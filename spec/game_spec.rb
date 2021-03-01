@@ -15,5 +15,18 @@ describe Game do
       end
     end
   end
+
+  describe '#valid_piece?' do
+    context 'when a valid piece is selected' do
+      it 'returns true' do
+        expect(game.valid_piece?('Rook')).to be true
+      end
+    end
+    context 'when a valid piece is selected' do
+      it 'returns false' do
+        expect(game.valid_piece?('Rook7B')).to be false
+      end
+    end
+  end
 end
 
