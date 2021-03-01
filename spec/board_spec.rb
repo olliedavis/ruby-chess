@@ -1,7 +1,7 @@
 require_relative '../lib/board'
 
 describe GameBoard do
-  subject(:gameboard) { GameBoard.new }
+  subject(:board) { Chessboard.new }
 
   describe '#current_board' do
     context 'when called' do
