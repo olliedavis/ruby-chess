@@ -3,7 +3,7 @@ require_relative '../lib/game'
 describe Game do
   subject(:game) { described_class.new }
 
-  describe '#valid_input?' do
+  describe '#valid_position?' do
     context 'when a valid input is provided' do
       it 'returns true' do
         expect(game.valid_input?('7B')).to be true
@@ -15,6 +15,5 @@ describe Game do
       end
     end
   end
-  
 end
 
