@@ -5,7 +5,7 @@ class Chessboard
   end
 
   def current_board
-    puts "\n"
+    puts "\n --------------------------------- "
     8.times.reverse_each do |y|
       print "#{y + 1}|"
       8.times do |n|
