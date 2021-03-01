@@ -1,4 +1,6 @@
+require_relative 'pieces'
 class Chessboard
+  include Pieces
   def initialize
     @board = [' '] * 64
     current_board
