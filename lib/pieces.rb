@@ -1,6 +1,7 @@
 # technically the color of the unicode characters is the other way around
 # but terminal shows black as opaque white, and white as transparent
 # which just makes it confusing as most terminals are black or purple, it make sense to be rotated.
+# could cause issues with terminals with white backgrounds. Needs to be tested.
 module Pieces
   BLACK_KING = "\u2654"
   BLACK_QUEEN = "\u2655"
