@@ -1,7 +1,7 @@
 require_relative 'board'
 class Game
   def initialize
-    @board = Chessboard.new
+    @chessboard = Chessboard.new.board
     @pieces = %w[king queen rook bishop knight pawn]
   end
 
@@ -24,4 +24,5 @@ class Game
     return 'white' if play_counter.even?
     return 'black' if play_counter.odd?
   end
+  
 end
