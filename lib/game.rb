@@ -2,6 +2,7 @@ require_relative 'board'
 class Game
   def initialize
     @board = Chessboard.new
+    @pieces = %w[king queen rook bishop knight pawn]
   end
 
   def valid_position?(input)
@@ -13,4 +14,9 @@ class Game
     false
   end
 
+  def valid_piece?(input)
+    return true if @pieces.include?(input.downcase)
+
+    false
+  end
 end
