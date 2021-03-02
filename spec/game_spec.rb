@@ -31,14 +31,14 @@ describe Game do
 
   describe '#current_player' do
     context "when it is White's turn" do
-      xit 'returns White' do
-        expect(game.current_player(2)).to eq('White')
+      it 'returns White' do
+        expect(game.current_player(2)).to eq('white')
       end
     end
 
     context "when it is Black's turn" do
-      xit 'returns Black' do
-        expect(game.current_player(5)).to eq('Black')
+      it 'returns Black' do
+        expect(game.current_player(5)).to eq('black')
       end
     end
   end

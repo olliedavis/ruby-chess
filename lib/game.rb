@@ -19,4 +19,9 @@ class Game
 
     false
   end
+
+  def current_player(play_counter)
+    return 'white' if play_counter.even?
+    return 'black' if play_counter.odd?
+  end
 end
