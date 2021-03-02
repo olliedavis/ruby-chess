@@ -1,6 +1,9 @@
 require_relative 'pieces'
 class Chessboard
+  attr_accessor :board
+
   include Pieces
+  
   def initialize
     @board = [
       [BLACK_ROOK, BLACK_KNIGHT, BLACK_BISHOP, BLACK_QUEEN, BLACK_KING, BLACK_BISHOP, BLACK_KNIGHT, BLACK_ROOK],
