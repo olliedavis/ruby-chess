@@ -31,4 +31,12 @@ class Chessboard
     puts ' | A | B | C | D | E | F | G | H |'
     puts "\n"
   end
+
+  def position_to_index(position_string)
+    positions = %w[a b c d e f g h]
+    column = positions.downcase.index(position_string[0])
+    row = position_string[1].to_i
+    [(8 - row), column]
+  end
+  
 end
