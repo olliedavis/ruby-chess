@@ -1,7 +1,7 @@
 class Pawn
   attr_reader :moves
 
-  def initialize(color, count)
+  def initialize(color = 'black', count = 0)
     @moves = first_move_check(color, count)
   end
 
