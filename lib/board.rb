@@ -38,5 +38,15 @@ class Chessboard
     row = position_string[1].to_i
     [(8 - row), column]
   end
-  
+
+  def position_taken?(new_position)
+    return true if @board[new_position] != ' '
+
+    false
+  end
+
+  def taken_piece(position, piece)
+    @board[position] = piece
+  end
+
 end
