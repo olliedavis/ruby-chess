@@ -1,9 +1,17 @@
 class Pawn
   attr_reader :moves
-  def initialize
-    @white_first_moves = [[-1, 0], [-2, 0]]
-    @black_first_moves = [[1, 0], [2, 0]]
-    @white_moves = [-1, 0]
-    @black_moves = [1, 0]
+
+  def initialize(color, count)
+    @moves = first_move_check(color, count)
+  end
+
+  def first_move_check(color, count)
+    if count.zero? == false
+      [-1, 0] if color == 'white'
+      [1, 0] if color == 'black'
+    else
+      [[-1, 0], [-2, 0]] if color == 'white'
+      [[1, 0], [2, 0]] if color == 'black'
+    end
   end
 end
