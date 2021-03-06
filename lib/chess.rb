@@ -39,8 +39,26 @@ class Chess
   end
 
   def legal_move?(piece, current_position_index, new_position_index)
-    piece.moves.each do |x, y|
+    current_piece = piece_to_class(piece)
+    current_piece.moves.each do |x, y|
       return true if new_position_index == [(current_position_index[0] + x), (current_position_index[1] + y)]
+    end
+  end
+
+  def piece_to_class(piece)
+    case piece
+    when 'king'
+      @king
+    when 'queen'
+      @queen
+    when 'bishop'
+      @bishop
+    when 'rook'
+      @rook
+    when 'knight'
+      @knight
+    when 'pawn'
+      @pawn
     end
   end
 
