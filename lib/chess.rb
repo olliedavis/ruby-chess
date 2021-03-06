@@ -10,10 +10,24 @@ class Chess
     @rook = Rook.new
     @knight = Knight.new
     @pawn = Pawn.new
+    @turn_counter = 0
+  end
+
+  def player_input
+    if @turn_counter.zero?
+      puts "White's turn! Please enter the position of the piece you want to move"
+    else
+      puts "Black's turn! Please enter the position of the piece you want to move"
+    end
+
+    piece = gets.chomp
+    until valid_piece?(piece)
+      puts 'Are you sure that position contains one of your pieces? Please try again.'
+      piece = gets.chomp
+    end
   end
 
   def move_validator(piece, input, current_position_index, new_position_index)
-    valid_piece?(piece)
     valid_position?(input)
     legal_move?(piece, current_position_index, new_position_index)
   end
@@ -28,7 +42,7 @@ class Chess
   end
 
   def valid_piece?(input)
-    return true if @pieces.include?(input.downcase)
+    return true if input.include?(input.downcase)
 
     false
   end
@@ -57,8 +71,4 @@ class Chess
     end
   end
 
-  def current_player(play_counter)
-    return 'white' if play_counter.even?
-    return 'black' if play_counter.odd?
-  end
 end
