@@ -1,5 +1,5 @@
 require_relative 'board'
-Dir['/pieces/*.rb'].each { |file| require file }
+Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 class Chess
   def initialize
     @chessboard = Chessboard.new.board
