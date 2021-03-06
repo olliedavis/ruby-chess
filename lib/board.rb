@@ -53,8 +53,11 @@ class Chessboard
 
   def pieces_left_count
     count = 0
-    @board.each { |square| count += 1 if square != [' '] }
+    @board.each do |row|
+      row.each do |square|
+        count += 1 if square != ' '
+      end
+    end
     count
   end
-
 end
