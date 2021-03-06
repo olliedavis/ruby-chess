@@ -17,6 +17,12 @@ class Chess
     @pawn = Pawn.new
   end
 
+  def move_validator(piece, input, current_position_index, new_position_index)
+    valid_piece?(piece)
+    valid_position?(input)
+    legal_move?(piece, current_position_index, new_position_index)
+  end
+
   def valid_position?(input)
     if input.length == 2
       y_axis = input[0].to_i
@@ -42,6 +48,4 @@ class Chess
     return 'white' if play_counter.even?
     return 'black' if play_counter.odd?
   end
-
-  
 end
