@@ -5,14 +5,16 @@ class Chess
   include Pieces
   def initialize
     @board = Chessboard.new.board
-    @white_pieces = [@board[WHITE_KING], @board[WHITE_QUEEN], @board[WHITE_ROOK], @board[WHITE_BISHOP], @board[WHITE_KNIGHT], @board[WHITE_PAWN]]
-    @black_pieces = [@board[BLACK_KING], @board[BLACK_QUEEN], @board[BLACK_ROOK], @board[BLACK_BISHOP], @board[BLACK_KNIGHT], @board[BLACK_PAWN]]
-    @king = King.new
-    @queen = Queen.new
-    @bishop = Bishop.new
-    @rook = Rook.new
-    @knight = Knight.new
-    @pawn = Pawn.new
+    # These obviously doesn't work as it can't take convert a string to an integer
+    # Need to look into alternate method to return the index of the consts
+    @white_pieces = [ 
+      @board[WHITE_KING], @board[WHITE_QUEEN], @board[WHITE_ROOK], 
+      @board[WHITE_BISHOP], @board[WHITE_KNIGHT], @board[WHITE_PAWN]
+    ]
+    @black_pieces = [
+      @board[BLACK_KING], @board[BLACK_QUEEN], @board[BLACK_ROOK],
+      @board[BLACK_BISHOP], @board[BLACK_KNIGHT], @board[BLACK_PAWN]
+    ]
     @turn_counter = 0
   end
 
@@ -46,11 +48,10 @@ class Chess
 
   def valid_piece?(input)
     input = @board.position_to_index(input)
-    if @turn_counter.zero?
-      return true if @white_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
-    else
-      return true if @black_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
-    end
+    return true if @turn_counter.zero? && @white_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
+
+    return true if @turn_counter == 1 && @black_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
+
     false
   end
 
@@ -60,22 +61,4 @@ class Chess
       return true if new_position_index == [(current_position_index[0] + x), (current_position_index[1] + y)]
     end
   end
-
-  def piece_to_class(piece)
-    case piece
-    when 'king'
-      @king
-    when 'queen'
-      @queen
-    when 'bishop'
-      @bishop
-    when 'rook'
-      @rook
-    when 'knight'
-      @knight
-    when 'pawn'
-      @pawn
-    end
-  end
-
 end
