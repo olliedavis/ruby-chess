@@ -32,13 +32,13 @@ class Chessboard
     puts "\n"
   end
 
-  #  converts the letter's position to integer position. EG, B3 = [6, 2] as B3 is on the 7th row, at the 3rd position
+  #  converts the letter's position to integer position. EG, B3 = [5, 1]
   def position_to_index(position_string)
     position_string.downcase!
     positions = %w[a b c d e f g h]
     column = positions.index(position_string[0])
     row = position_string[1].to_i
-    [(9 - row), (column + 1)]
+    [(8 - row), column]
   end
 
   def position_taken?(new_position)

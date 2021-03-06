@@ -18,4 +18,14 @@ describe Chessboard do
       end
     end
   end
+
+  describe '#position_to_index' do
+    context 'when given a position' do
+      it 'returns the matching index in relation to the board' do
+        expect(board.position_to_index('B3')).to eq([5, 1])
+        expect(board.position_to_index('A1')).to eq([7, 0])
+        expect(board.position_to_index('E5')).to eq([3, 4])
+      end
+    end
+  end
 end
