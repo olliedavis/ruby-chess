@@ -1,9 +1,12 @@
 require_relative 'board'
+require_relative 'pieces'
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 class Chess
+  include Pieces
   def initialize
-    @chessboard = Chessboard.new.board
-    @pieces = %w[king queen rook bishop knight pawn]
+    @board = Chessboard.new.board
+    @white_pieces = [@board[WHITE_KING], @board[WHITE_QUEEN], @board[WHITE_ROOK], @board[WHITE_BISHOP], @board[WHITE_KNIGHT], @board[WHITE_PAWN]]
+    @black_pieces = [@board[BLACK_KING], @board[BLACK_QUEEN], @board[BLACK_ROOK], @board[BLACK_BISHOP], @board[BLACK_KNIGHT], @board[BLACK_PAWN]]
     @king = King.new
     @queen = Queen.new
     @bishop = Bishop.new
@@ -36,14 +39,27 @@ class Chess
     if input.length == 2
       y_axis = input[0].to_i
       x_axis = input[1]
+      return true if y_axis.between?(0, 7) && x_axis.downcase.between?('a', 'h')
+    end
+    false
+  end
+
+  def valid_input?(input)
+    if input.length == 2
+      y_axis = input[0].to_i
+      x_axis = input[1]
       return true if y_axis.between?(1, 8) && x_axis.downcase.between?('a', 'h')
     end
     false
   end
 
   def valid_piece?(input)
-    return true if input.include?(input.downcase)
-
+    input = @board.position_to_index(input)
+    if @turn_counter.zero?
+      return true if @white_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
+    else
+      return true if @black_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
+    end
     false
   end
 
