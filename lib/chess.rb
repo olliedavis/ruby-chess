@@ -5,7 +5,7 @@ require_relative '/pieces/bishop'
 require_relative '/pieces/rook'
 require_relative '/pieces/pawn'
 
-class Game
+class Chess
   def initialize
     @chessboard = Chessboard.new.board
     @pieces = %w[king queen rook bishop knight pawn]
@@ -42,5 +42,6 @@ class Game
     return 'white' if play_counter.even?
     return 'black' if play_counter.odd?
   end
+
   
 end
