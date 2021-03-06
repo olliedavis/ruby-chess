@@ -35,15 +35,6 @@ class Chess
     legal_move?(piece, current_position_index, new_position_index)
   end
 
-  def valid_position?(input)
-    if input.length == 2
-      y_axis = input[0].to_i
-      x_axis = input[1]
-      return true if y_axis.between?(0, 7) && x_axis.downcase.between?('a', 'h')
-    end
-    false
-  end
-
   def valid_input?(input)
     if input.length == 2
       y_axis = input[0].to_i
