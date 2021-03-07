@@ -10,19 +10,17 @@ class Chess
     @turn_counter = 0
   end
 
-  def player_input
-    if @turn_counter.zero?
-      puts "White's turn! Please enter the position of the piece you want to move"
-    else
-      puts "Black's turn! Please enter the position of the piece you want to move"
-    end
-
+  def choose_piece_input
+    puts "White's turn! Please enter the position of the piece you want to move" if @turn_counter.zero?
+    puts "Black's turn! Please enter the position of the piece you want to move" if @turn_counter.zero? == false
     piece = gets.chomp
     until valid_piece?(piece)
       puts 'Are you sure that position contains one of your pieces? Please try again.'
       piece = gets.chomp
     end
+    piece
   end
+
 
   def valid_input?(input)
     if input.length == 2
