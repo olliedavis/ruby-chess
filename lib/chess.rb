@@ -84,4 +84,10 @@ class Chess
     end
   end
 
+  def index_to_piece(position)
+    x_axis = position[0].to_i
+    y_axis = position[1].to_i
+    @chessboard.board[x_axis][y_axis]
+  end
+
 end
