@@ -17,14 +17,14 @@ describe Chess do
   end
 
   describe '#valid_piece?' do
-    context 'when a valid piece is selected' do
-      xit 'returns true' do
-        #expect(chess.valid_piece?(TODO)).to be true
+    context 'when a valid white piece is selected' do
+      it 'returns true' do
+        expect(chess.valid_piece?('A1')).to be true
       end
     end
-    context 'when a valid piece is selected' do
-      xit 'returns false' do
-        #expect(chess.valid_piece?(TODO)).to be false
+    context 'when a an opposition piece is selected' do
+      it 'returns false' do
+        expect(chess.valid_piece?('C8')).to be false
       end
     end
   end 
