@@ -42,9 +42,21 @@ describe Chess do
   end 
 
   describe '#legal_move?' do
-    context 'when a valid move is provided' do
+    context "when a provided position is within the Pawn's moveset" do
       it 'returns true' do
-        expect(chess.legal_move?('♟', 'white', [1, 1], [2, 1])).to be true
+        expect(chess.legal_move?('♙', [1, 1], [2, 1], 'black')).to be true
+        expect(chess.legal_move?('♟', [6, 1], [5, 1], 'white')).to be true
+        expect(chess.legal_move?('♙', [1, 1], [3, 1], 'black')).to be true
+        expect(chess.legal_move?('♟', [6, 1], [4, 1], 'white')).to be true
+      end
+    end
+    context "when a provided position is within the piece's moveset" do
+      it 'returns true' do
+        expect(chess.legal_move?('♔', [0, 3], [0, 4])).to be true
+        expect(chess.legal_move?('♕', [5, 5], [2, 5])).to be true
+        expect(chess.legal_move?('♗', [4, 0], [5, 1])).to be true
+        expect(chess.legal_move?('♖', [0, 0], [4, 0])).to be true
+        expect(chess.legal_move?('♘', [6, 1], [4, 0])).to be true
       end
     end
   end
