@@ -16,12 +16,23 @@ class Chess
   def choose_piece_input
     puts "White's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.even?
     puts "Black's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.odd?
-    piece = gets.chomp
-    until valid_input?(piece) && valid_piece?(piece)
+    piece_index = gets.chomp
+    until valid_input?(piece_index) && valid_piece?(piece_index)
       puts 'Are you sure that position contains one of your pieces? Please try again.'
-      piece = gets.chomp
+      piece_index = gets.chomp
     end
-    piece
+    piece_index
+  end
+
+  def move_piece_input
+    puts 'Please enter the coordinates of where you would like to move your piece'
+    puts "If you have changed your mind and want to move a different piece, please type 'Change'"
+    position = gets.chomp
+    start if position.downcase == 'change'
+    until valid_input?(position) && legal_move?#(to do)
+      puts "I don't think that is a legal move. Please try again"
+      position = gets.chomp
+    end
   end
 
   def valid_input?(input)
@@ -42,10 +53,11 @@ class Chess
     false
   end
 
-  def legal_move?(piece, current_position, new_position, color = '')
+  def legal_move?(current_position, new_position)
+    piece = index_to_piece(current_position)
     current_piece =
       if ['♟', '♙'].include?(piece)
-        piece_to_class(piece, current_position, color)
+        piece_to_class(piece, current_position)
       else
         piece_to_class(piece)
       end
@@ -71,4 +83,5 @@ class Chess
       @pawn = Pawn.new(current_position, color)
     end
   end
+
 end
