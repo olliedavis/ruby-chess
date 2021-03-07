@@ -59,6 +59,16 @@ describe Chess do
         expect(chess.legal_move?('♘', [6, 1], [4, 0])).to be true
       end
     end
+    context "when a provided is not within the piece's moveset" do
+      it 'returns false' do
+        expect(chess.legal_move?('♔', [0, 3], [3, 3])).to be false
+        expect(chess.legal_move?('♕', [5, 5], [3, 4])).to be false
+        expect(chess.legal_move?('♗', [4, 0], [4, 1])).to be false
+        expect(chess.legal_move?('♖', [0, 0], [1, 1])).to be false
+        expect(chess.legal_move?('♘', [6, 1], [4, 1])).to be false
+        expect(chess.legal_move?('♙', [1, 1], [5, 1], 'black')).to be false
+      end
+    end
   end
 end
 
