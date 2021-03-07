@@ -40,5 +40,13 @@ describe Chess do
       end
     end
   end 
+
+  describe '#legal_move?' do
+    context 'when a valid move is provided' do
+      it 'returns true' do
+        expect(chess.legal_move?('♟', 'white', [1, 1], [2, 1])).to be true
+      end
+    end
+  end
 end
 
