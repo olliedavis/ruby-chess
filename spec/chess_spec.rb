@@ -22,9 +22,21 @@ describe Chess do
         expect(chess.valid_piece?('A1')).to be true
       end
     end
-    context 'when a an opposition piece is selected' do
+    context 'when white selects a black piece' do
       it 'returns false' do
         expect(chess.valid_piece?('C8')).to be false
+      end
+    end
+    context 'when a valid black piece is selected' do
+      it 'returns true' do
+        chess.instance_variable_set(:@turn_counter, 1)
+        expect(chess.valid_piece?('D7')).to be true
+      end
+    end
+    context 'when black selects a white piece' do
+      it 'returns false' do
+        chess.instance_variable_set(:@turn_counter, 1)
+        expect(chess.valid_piece?('E1')).to be false
       end
     end
   end 
