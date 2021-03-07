@@ -4,20 +4,12 @@ Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 class Chess
   include Pieces
   def initialize
-    @board = Chessboard.new.board
-    # These obviously doesn't work as it can't take convert a string to an integer
-    # Need to look into alternate method to return the index of the consts
-    @white_pieces = [ 
-      @board[WHITE_KING], @board[WHITE_QUEEN], @board[WHITE_ROOK], 
-      @board[WHITE_BISHOP], @board[WHITE_KNIGHT], @board[WHITE_PAWN]
-    ]
-    @black_pieces = [
-      @board[BLACK_KING], @board[BLACK_QUEEN], @board[BLACK_ROOK],
-      @board[BLACK_BISHOP], @board[BLACK_KNIGHT], @board[BLACK_PAWN]
-    ]
+    @chessboard = Chessboard.new
+    @black_pieces = ['♖', '♘', '♗', '♕', '♔', '♙']
+    @white_pieces = ['♜', '♞', '♝', '♚', '♛', '♟']
     @turn_counter = 0
   end
-
+  
   def player_input
     if @turn_counter.zero?
       puts "White's turn! Please enter the position of the piece you want to move"
@@ -47,10 +39,10 @@ class Chess
   end
 
   def valid_piece?(input)
-    input = @board.position_to_index(input)
-    return true if @turn_counter.zero? && @white_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
+    input = @chessboard.position_to_index(input)
+    return true if @turn_counter.zero? && @white_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
 
-    return true if @turn_counter == 1 && @black_pieces.any? { |piece| @board[input[0]][input[1]] == piece }
+    return true if @turn_counter == 1 && @black_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
 
     false
   end
