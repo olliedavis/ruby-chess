@@ -3,16 +3,16 @@
 # which just makes it confusing as most terminals are black or purple, it make sense to be rotated.
 # could cause issues with terminals with white backgrounds. Needs to be tested.
 module Pieces
-  BLACK_KING = "\u2654"
-  BLACK_QUEEN = "\u2655"
-  BLACK_ROOK = "\u2656"
-  BLACK_BISHOP = "\u2657"
-  BLACK_KNIGHT = "\u2658"
-  BLACK_PAWN = "\u2659"
-  WHITE_KING = "\u265A"
-  WHITE_QUEEN = "\u265B"
-  WHITE_ROOK = "\u265C"
-  WHITE_BISHOP = "\u265D"
-  WHITE_KNIGHT = "\u265E"
-  WHITE_PAWN = "\u265F"
+  BLACK_KING = "\u2654".freeze
+  BLACK_QUEEN = "\u2655".freeze
+  BLACK_ROOK = "\u2656".freeze
+  BLACK_BISHOP = "\u2657".freeze
+  BLACK_KNIGHT = "\u2658".freeze
+  BLACK_PAWN = "\u2659".freeze
+  WHITE_KING = "\u265A".freeze
+  WHITE_QUEEN = "\u265B".freeze
+  WHITE_ROOK = "\u265C".freeze
+  WHITE_BISHOP = "\u265D".freeze
+  WHITE_KNIGHT = "\u265E".freeze
+  WHITE_PAWN = "\u265F".freeze
 end
