@@ -11,8 +11,8 @@ class Chess
   end
 
   def choose_piece_input
-    puts "White's turn! Please enter the position of the piece you want to move" if @turn_counter.zero?
-    puts "Black's turn! Please enter the position of the piece you want to move" if @turn_counter.zero? == false
+    puts "White's turn! Please enter the position of the piece you want to move" if @turn_counter.even?
+    puts "Black's turn! Please enter the position of the piece you want to move" if @turn_counter.odd?
     piece = gets.chomp
     until valid_piece?(piece)
       puts 'Are you sure that position contains one of your pieces? Please try again.'
@@ -33,9 +33,9 @@ class Chess
 
   def valid_piece?(input)
     input = @chessboard.position_to_index(input)
-    return true if @turn_counter.zero? && @white_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
+    return true if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
 
-    return true if @turn_counter == 1 && @black_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
+    return true if @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
 
     false
   end
