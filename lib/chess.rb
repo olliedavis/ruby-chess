@@ -42,7 +42,7 @@ class Chess
     false
   end
 
-  def legal_move?(piece, color, current_position, new_position)
+  def legal_move?(piece, current_position, new_position, color = '')
     current_piece =
       if ['♟', '♙'].include?(piece)
         piece_to_class(piece, current_position, color)
@@ -55,7 +55,7 @@ class Chess
     false
   end
 
-  def piece_to_class(piece, current_position = [], color = 'white')
+  def piece_to_class(piece, current_position = [], color = '')
     case piece
     when '♔', '♚'
       @king = King.new
@@ -67,7 +67,7 @@ class Chess
       @rook = Rook.new
     when '♘', '♞'
       @knight = Knight.new
-    when '♙', '♟︎	'
+    when '♙', '♟'
       @pawn = Pawn.new(current_position, color)
     end
   end
