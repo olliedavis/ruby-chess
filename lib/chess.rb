@@ -24,12 +24,12 @@ class Chess
     piece_index
   end
 
-  def move_piece_input
+  def move_piece_input(chosen_position)
     puts 'Please enter the coordinates of where you would like to move your piece'
     puts "If you have changed your mind and want to move a different piece, please type 'Change'"
     position = gets.chomp
     start if position.downcase == 'change'
-    until valid_input?(position) && legal_move?#(to do)
+    until valid_input?(position) && legal_move?(chosen_position, new_position)
       puts "I don't think that is a legal move. Please try again"
       position = gets.chomp
     end
