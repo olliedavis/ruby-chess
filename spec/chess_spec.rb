@@ -44,29 +44,29 @@ describe Chess do
   describe '#legal_move?' do
     context "when a provided position is within the Pawn's moveset" do
       it 'returns true' do
-        expect(chess.legal_move?('♙', [1, 1], [2, 1], 'black')).to be true
-        expect(chess.legal_move?('♟', [6, 1], [5, 1], 'white')).to be true
-        expect(chess.legal_move?('♙', [1, 1], [3, 1], 'black')).to be true
-        expect(chess.legal_move?('♟', [6, 1], [4, 1], 'white')).to be true
+        expect(chess.legal_move?([1, 1], [2, 1])).to be true # white
+        expect(chess.legal_move?([6, 1], [5, 1])).to be true # black
+        expect(chess.legal_move?([1, 1], [3, 1])).to be true # white
+        expect(chess.legal_move?([6, 1], [4, 1])).to be true # black
       end
     end
     context "when a provided position is within the piece's moveset" do
       it 'returns true' do
-        expect(chess.legal_move?('♔', [0, 3], [0, 4])).to be true
-        expect(chess.legal_move?('♕', [5, 5], [2, 5])).to be true
-        expect(chess.legal_move?('♗', [4, 0], [5, 1])).to be true
-        expect(chess.legal_move?('♖', [0, 0], [4, 0])).to be true
-        expect(chess.legal_move?('♘', [6, 1], [4, 0])).to be true
+        expect(chess.legal_move?([0, 4], [1, 4])).to be true # king
+        expect(chess.legal_move?([0, 3], [2, 5])).to be true # queen
+        expect(chess.legal_move?([0, 2], [3, 5])).to be true # bishop
+        expect(chess.legal_move?([0, 1], [2, 2])).to be true # knight
+        expect(chess.legal_move?([0, 0], [0, 5])).to be true # rook
       end
     end
     context "when a provided is not within the piece's moveset" do
       it 'returns false' do
-        expect(chess.legal_move?('♔', [0, 3], [3, 3])).to be false
-        expect(chess.legal_move?('♕', [5, 5], [3, 4])).to be false
-        expect(chess.legal_move?('♗', [4, 0], [4, 1])).to be false
-        expect(chess.legal_move?('♖', [0, 0], [1, 1])).to be false
-        expect(chess.legal_move?('♘', [6, 1], [4, 1])).to be false
-        expect(chess.legal_move?('♙', [1, 1], [5, 1], 'black')).to be false
+        expect(chess.legal_move?([0, 4], [4, 3])).to be false  # king
+        expect(chess.legal_move?([0, 3], [3, 1])).to be false  # queen
+        expect(chess.legal_move?([0, 2], [1, 2])).to be false  # bishop
+        expect(chess.legal_move?([0, 1], [1, 1])).to be false  # knight
+        expect(chess.legal_move?([0, 0], [1, 1])).to be false  # rook
+        expect(chess.legal_move?([1, 0], [5, 1])).to be false  # pawn
       end
     end
   end
