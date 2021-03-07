@@ -19,6 +19,6 @@ class Queen
       (1..7).map { |n| [n, -n] }.freeze,
       # Down Right Diagonally
       (1..7).map { |n| [n, n] }.freeze
-    ]
+    ].flatten(1)
   end
 end
