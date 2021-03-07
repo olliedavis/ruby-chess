@@ -9,7 +9,7 @@ class Chess
     @white_pieces = ['♜', '♞', '♝', '♚', '♛', '♟']
     @turn_counter = 0
   end
-  
+
   def player_input
     if @turn_counter.zero?
       puts "White's turn! Please enter the position of the piece you want to move"
@@ -22,11 +22,6 @@ class Chess
       puts 'Are you sure that position contains one of your pieces? Please try again.'
       piece = gets.chomp
     end
-  end
-
-  def move_validator(piece, input, current_position_index, new_position_index)
-    valid_position?(input)
-    legal_move?(piece, current_position_index, new_position_index)
   end
 
   def valid_input?(input)
@@ -47,10 +42,33 @@ class Chess
     false
   end
 
-  def legal_move?(piece, current_position_index, new_position_index)
-    current_piece = piece_to_class(piece)
+  def legal_move?(piece, color, current_position, new_position)
+    current_piece =
+      if ['♟', '♙'].include?(piece)
+        piece_to_class(piece, color, current_position)
+      else
+        piece_to_class(piece)
+      end
     current_piece.moves.each do |x, y|
-      return true if new_position_index == [(current_position_index[0] + x), (current_position_index[1] + y)]
+      return true if new_position == [(current_position[0] + x), (current_position[1] + y)]
+    end
+    false
+  end
+
+  def piece_to_class(piece, current_position = [], color = 'white')
+    case piece
+    when '♔' || '♚'
+      @king = King.new
+    when '♕' || '♛'
+      @queen = Queen.new
+    when '♗' || '♝'
+      @bishop = Bishop.new
+    when '♖' || '♜'
+      @rook = Rook.new
+    when '♘' || '♞'
+      @knight = Knight.new
+    when '♙' || '♟︎	'
+      @pawn = Pawn.new(current_position, color)
     end
   end
 end
