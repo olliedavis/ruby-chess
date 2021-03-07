@@ -67,7 +67,7 @@ class Chess
     false
   end
 
-  def piece_to_class(piece, current_position = [], color = '')
+  def piece_to_class(piece, current_position = [])
     case piece
     when '♔', '♚'
       @king = King.new
@@ -80,7 +80,7 @@ class Chess
     when '♘', '♞'
       @knight = Knight.new
     when '♙', '♟'
-      @pawn = Pawn.new(current_position, color)
+      @pawn = Pawn.new(current_position, piece)
     end
   end
 
