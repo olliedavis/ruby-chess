@@ -1,5 +1,6 @@
 class Bishop
   attr_reader :moves
+
   def initialize
     @moves = [
       # Up Left Diagonally
@@ -13,5 +14,3 @@ class Bishop
     ]
   end
 end
-
-Bishop.new
