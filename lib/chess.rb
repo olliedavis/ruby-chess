@@ -51,7 +51,7 @@ class Chess
     position = @chessboard.position_to_index(position)
     return true if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[position[0]][position[1]] == piece }
 
-    return true if @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
+    return true if @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[position[0]][position[1]] == piece }
 
     false
   end
