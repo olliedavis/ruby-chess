@@ -19,20 +19,22 @@ class Chess
     position = @chessboard.position_to_index(position)
     until valid_input?(position) && valid_piece?(position)
       puts 'Are you sure that position contains one of your pieces? Please try again.'
-      position = gets.chomp
-      position = @chessboard.position_to_index(position)
+      puts ''
+      choose_piece_input
     end
-    piece_index
+    position
   end
 
   def move_piece_input(chosen_position)
     puts 'Please enter the coordinates of where you would like to move your piece'
     puts "If you have changed your mind and want to move a different piece, please type 'Change'"
-    position = gets.chomp
-    start if position.downcase == 'change'
+    new_position = gets.chomp
+    start if new_position.downcase == 'change'
+    new_position = @chessboard.position_to_index(position)
     until valid_input?(position) && legal_move?(chosen_position, new_position)
       puts "I don't think that is a legal move. Please try again"
-      position = gets.chomp
+      puts ''
+      move_piece_input(chosen_position)
     end
   end
 
@@ -91,5 +93,6 @@ class Chess
     @chessboard.board[x_axis][y_axis]
   end
 
+  
 
 end
