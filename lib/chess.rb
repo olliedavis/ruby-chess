@@ -12,6 +12,15 @@ class Chess
     @taken_black_pieces = 0
   end
 
+  def start
+    position = choose_piece_input
+    new_position = move_piece_input(position)
+    piece_taken?(new_position)
+    @turn_counter += 1 
+    check?
+    checkmate?
+  end
+  
   def choose_piece_input
     puts "White's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.even?
     puts "Black's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.odd?
