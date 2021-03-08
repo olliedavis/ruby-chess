@@ -8,6 +8,8 @@ class Chess
     @black_pieces = ['♖', '♘', '♗', '♕', '♔', '♙']
     @white_pieces = ['♜', '♞', '♝', '♚', '♛', '♟']
     @turn_counter = 0
+    @white_taken_pieces = 0
+    @black_taken_pieces = 0
   end
 
   def start
