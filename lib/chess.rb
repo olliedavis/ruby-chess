@@ -15,12 +15,12 @@ class Chess
   def choose_piece_input
     puts "White's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.even?
     puts "Black's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.odd?
-    piece_index = gets.chomp
-    piece_index = @chessboard.position_to_index(piece_index)
-    until valid_input?(piece_index) && valid_piece?(piece_index)
+    position = gets.chomp
+    position = @chessboard.position_to_index(position)
+    until valid_input?(position) && valid_piece?(position)
       puts 'Are you sure that position contains one of your pieces? Please try again.'
-      piece_index = gets.chomp
-      piece_index = @chessboard.position_to_index(piece_index)
+      position = gets.chomp
+      position = @chessboard.position_to_index(position)
     end
     piece_index
   end
@@ -45,9 +45,9 @@ class Chess
     false
   end
 
-  def valid_piece?(input)
-    input = @chessboard.position_to_index(input)
-    return true if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
+  def valid_piece?(position)
+    position = @chessboard.position_to_index(position)
+    return true if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[position[0]][position[1]] == piece }
 
     return true if @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
 
@@ -91,8 +91,5 @@ class Chess
     @chessboard.board[x_axis][y_axis]
   end
 
-  def taken_piece
-
-  end
 
 end
