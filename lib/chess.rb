@@ -88,11 +88,9 @@ class Chess
   end
 
   def index_to_piece(position)
-    x_axis = position[0].to_i
-    y_axis = position[1].to_i
-    @chessboard.board[x_axis][y_axis]
+    @chessboard.board[position[0].to_i][position[1].to_i]
   end
-
+  
   def piece_taken?(new_position)
     if @turn_counter.odd? && @white_pieces.any? { |piece| piece == index_to_piece(new_position) }
       @taken_white_pieces += 1
