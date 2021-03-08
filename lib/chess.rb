@@ -8,8 +8,8 @@ class Chess
     @black_pieces = ['♖', '♘', '♗', '♕', '♔', '♙']
     @white_pieces = ['♜', '♞', '♝', '♚', '♛', '♟']
     @turn_counter = 0
-    @white_taken_pieces = 0
-    @black_taken_pieces = 0
+    @taken_white_pieces = 0
+    @taken_black_pieces = 0
   end
 
   def choose_piece_input
@@ -93,6 +93,15 @@ class Chess
     @chessboard.board[x_axis][y_axis]
   end
 
-  
-
+  def piece_taken?(new_position)
+    if @turn_counter.odd? && @white_pieces.any? { |piece| piece == index_to_piece(new_position) }
+      @taken_white_pieces += 1
+      true
+    elsif @turn_counter.even? && @black_pieces.any? { |piece| piece == index_to_piece(new_position) }
+      @taken_black_pieces += 1
+      true
+    else
+      false
+    end
+  end
 end
