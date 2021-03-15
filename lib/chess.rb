@@ -20,4 +20,11 @@ class Chess
     input = gets.chomp.upcase
     valid_input?(input)
   end
+
+  def valid_input?(input)
+    return true if input.length == 2 && input[0].between?('A', 'H') && input[1].between?('1', '8')
+
+    puts 'Unrecognised - Please try again'
+    choose_piece_input
+  end
 end
