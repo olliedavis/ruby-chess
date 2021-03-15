@@ -27,8 +27,12 @@ class Chess
     puts "White's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.even?
     puts "Black's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.odd?
     position = gets.chomp
+    until valid_input?(position)
+      puts 'Unrecognised format, please try again'
+      position = gets.chomp
+    end
     position = @chessboard.position_to_index(position)
-    until valid_input?(position) && valid_piece?(position)
+    until valid_piece?(position)
       puts 'Are you sure that position contains one of your pieces? Please try again.'
       puts ''
       choose_piece_input
@@ -41,25 +45,29 @@ class Chess
     puts "If you have changed your mind and want to move a different piece, please type 'Change'"
     new_position = gets.chomp
     game if new_position.downcase == 'change'
-    new_position = @chessboard.position_to_index(position)
-    until valid_input?(position) && legal_move?(chosen_position, new_position)
-      puts "I don't think that is a legal move. Please try again"
-      puts ''
-      move_piece_input(chosen_position)
+    until valid_input?(new_position)
+      puts 'Unrecognised format, please try again'
+      new_position = gets.chomp
     end
+    new_position = @chessboard.position_to_index(new_position)
+    p new_position
+    # until legal_move?(chosen_position, new_position)
+    #   puts "I don't think that is a legal move. Please try again"
+    #   puts ''
+    #   move_piece_input(chosen_position)
+    # end
   end
 
   def valid_input?(input)
     if input.length == 2
       y_axis = input[0]
-      x_axis = input[1].to_i
-      return true if y_axis.between?(1, 8) && x_axis.between?(1, 8)
+      x_axis = input[1]
+      return true if y_axis.between?('A', 'H') && x_axis.between?('1', '8')
     end
     false
   end
 
   def valid_piece?(position)
-    position = @chessboard.position_to_index(position)
     return true if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[position[0]][position[1]] == piece }
 
     return true if @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[position[0]][position[1]] == piece }
@@ -118,6 +126,7 @@ class Chess
   end
 
   def move_piece(current_position, new_position)
-    Chessboard.board[new_position] = current_position
+    @chessboard.board[new_position[0][new_position[1]]] = current_position
   end
+  
 end
