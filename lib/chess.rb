@@ -67,12 +67,7 @@ class Chess
 
   def legal_move?(current_position, new_position)
     piece = index_to_piece(current_position)
-    current_piece =
-      if ['♟', '♙'].include?(piece)
-        piece_to_class(piece, current_position)
-      else
-        piece_to_class(piece)
-      end
+    current_piece = current_piece(piece, current_position)
     current_piece.moves.each do |x, y|
       return true if new_position == [(current_position[0] + x), (current_position[1] + y)]
     end
@@ -109,6 +104,14 @@ class Chess
       true
     else
       false
+    end
+  end
+
+  def current_piece(piece, current_position)
+    if ['♟', '♙'].include?(piece)
+      piece_to_class(piece, current_position)
+    else
+      piece_to_class(piece)
     end
   end
 end
