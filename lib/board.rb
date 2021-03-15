@@ -1,4 +1,6 @@
 require_relative 'pieces'
+Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
+
 class Chessboard
   attr_accessor :board
 
@@ -14,7 +16,7 @@ class Chessboard
       [' '] * 8,
       [WHITE_PAWN] * 8,
       [WHITE_ROOK, WHITE_KNIGHT, WHITE_BISHOP, WHITE_KING, WHITE_QUEEN, WHITE_BISHOP, WHITE_KNIGHT, WHITE_ROOK]
-  ]
+    ]
     @rows = @board[0..8]
     @columns = @board.transpose[0..8]
   end
