@@ -13,4 +13,16 @@ class Bishop
       (1..7).map { |n| [n, n] }.freeze
     ].flatten(1)
   end
+
+  def direction(current_position, new_position)
+    if (current_position[0] - new_position[0]).positive? && (current_position[1] - new_position[1]).positive?
+      upwards_left
+    elsif (current_position[0] - new_position[0]).positive? && (current_position[1] - new_position[1]).negative?
+      upwards_right
+    elsif (current_position[0] - new_position[0]).negative? && (current_position[1] - new_position[1]).positive?
+      downwards_left
+    else
+      downwards_right
+    end
+  end
 end
