@@ -12,13 +12,15 @@ class Chess
     @taken_black_pieces = 0
   end
 
-  def start
+  def game
+    @chessboard.current_board
     position = choose_piece_input
     new_position = move_piece_input(position)
+    move_piece(position, new_position)
     piece_taken?(new_position)
-    @turn_counter += 1 
-    check?
-    checkmate?
+    @turn_counter += 1
+    #check?
+    #checkmate?
   end
   
   def choose_piece_input
@@ -38,7 +40,7 @@ class Chess
     puts 'Please enter the coordinates of where you would like to move your piece'
     puts "If you have changed your mind and want to move a different piece, please type 'Change'"
     new_position = gets.chomp
-    start if new_position.downcase == 'change'
+    game if new_position.downcase == 'change'
     new_position = @chessboard.position_to_index(position)
     until valid_input?(position) && legal_move?(chosen_position, new_position)
       puts "I don't think that is a legal move. Please try again"
@@ -49,9 +51,9 @@ class Chess
 
   def valid_input?(input)
     if input.length == 2
-      y_axis = input[0].to_i
-      x_axis = input[1]
-      return true if y_axis.between?(1, 8) && x_axis.downcase.between?('a', 'h')
+      y_axis = input[0]
+      x_axis = input[1].to_i
+      return true if y_axis.between?(1, 8) && x_axis.between?(1, 8)
     end
     false
   end
@@ -113,5 +115,9 @@ class Chess
     else
       piece_to_class(piece)
     end
+  end
+
+  def move_piece(current_position, new_position)
+    Chessboard.board[new_position] = current_position
   end
 end
