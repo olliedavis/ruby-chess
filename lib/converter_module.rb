@@ -29,5 +29,8 @@ module Converter
     end
   end
 
-  
+  def input_to_class(input, current_position = [])
+    piece = input_to_piece(input)
+    piece_to_class(piece, current_position)
+  end
 end
