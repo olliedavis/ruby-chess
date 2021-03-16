@@ -10,15 +10,35 @@ class Chess
     @turn_counter = 0
   end
 
-  def start_turn
+  def first_choice_input
     input = choose_piece_input # returns the user's choice
-    validator(input) # checks if the input is valid
+    first_choice_validator(input) # checks if the input is valid
+  end
+
+  def second_choice_input
+    input = move_piece_input # returns the user's choice
+    second_choice_validator(input) # checks if the input is valid
   end
 
   def choose_piece_input
     puts "White's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.even?
     puts "Black's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.odd?
     gets.upcase.chomp
+  end
+
+  def move_piece_input
+    puts 'Please enter the coordinates of where you would like to move your piece'
+    gets.upcase.chomp
+  end
+
+  def first_choice_validator(input)
+    # returns to start if input is not valid
+    first_choice_input if valid_input?(input) == false || valid_piece?(input) == false 
+  end
+
+  def second_choice_validator(input)
+    # returns to 2nd choice input if input is not valid
+    second_choice_input if valid_input?(input) == false || legal_move?(input) == false # legal move? to be added
   end
 
   def valid_input?(input)
@@ -39,10 +59,5 @@ class Chess
       puts 'Unrecognised Piece - Please try again'
       false
     end
-  end
-
-  def validator(input)
-    # returns to choose_piece_input if input is not valid
-    choose_piece_input if valid_input?(input) == false || valid_piece?(input) == false 
   end
 end
