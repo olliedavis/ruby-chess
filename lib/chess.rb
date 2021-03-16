@@ -26,4 +26,12 @@ class Chess
     puts 'Unrecognised - Please try again'
     false
   end
+
+  def valid_piece?(input)
+    return true if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
+
+    return true if @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
+
+    false
+  end
 end
