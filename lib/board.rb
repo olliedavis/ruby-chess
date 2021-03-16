@@ -29,17 +29,16 @@ class Chessboard
         print " #{@board[y][n]} |"
       end
       puts "\n --------------------------------- "
-    end
+    end 
     puts ' | A | B | C | D | E | F | G | H |'
     puts "\n"
   end
 
   #  converts the letter's position to integer position. EG, B3 = [5, 1]
-  def position_to_index(position_string)
-    position_string.downcase!
-    positions = %w[a b c d e f g h]
-    column = positions.index(position_string[0])
-    row = position_string[1].to_i
+  def input_to_index(input)
+    x_axis = %w[A B C D E F G H]
+    column = x_axis.index(input[0]) # returns the index of the first value of input
+    row = input[1].to_i
     [(8 - row), column]
   end
 
