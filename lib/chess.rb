@@ -43,6 +43,6 @@ class Chess
 
   def validator(input)
     # returns to choose_piece_input if input is not valid
-    choose_piece_input if valid_input?(input) || valid_piece?(input) == false 
+    choose_piece_input if valid_input?(input) == false || valid_piece?(input) == false 
   end
 end
