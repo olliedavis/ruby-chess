@@ -1,8 +1,10 @@
 require_relative 'board'
 require_relative 'pieces'
+require_relative 'converter_module'
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 class Chess
   include Pieces
+  include Converter
   def initialize
     @chessboard = Chessboard.new
     @black_pieces = ['♖', '♘', '♗', '♕', '♔', '♙']
@@ -10,14 +12,21 @@ class Chess
     @turn_counter = 0
   end
 
-  def first_choice_input
-    input = choose_piece_input # returns the user's choice
-    first_choice_validator(input) # checks if the input is valid
+  def start_round
+    first_input = first_choice_input
+    second_input = second_choice_input(first_input)
   end
 
-  def second_choice_input
-    input = move_piece_input # returns the user's choice
-    second_choice_validator(input) # checks if the input is valid
+  def first_choice_input
+    first_input = choose_piece_input # returns the user's choice
+    first_choice_validator(first_input) # checks if the input is valid
+    first_input
+  end
+
+  def second_choice_input(first_input)
+    second_input = move_piece_input # returns the user's choice
+    second_choice_validator(first_input, second_input) # checks if the input is valid
+    second_input
   end
 
   def choose_piece_input
@@ -36,9 +45,9 @@ class Chess
     first_choice_input if valid_input?(input) == false || valid_piece?(input) == false 
   end
 
-  def second_choice_validator(input)
+  def second_choice_validator(first_input, second_input)
     # returns to 2nd choice input if input is not valid
-    second_choice_input if valid_input?(input) == false || legal_move?(input) == false # legal move? to be added
+    second_choice_input if valid_input?(second_input) == false || legal_move?(first_input, second_input) == false 
   end
 
   def valid_input?(input)
@@ -50,7 +59,7 @@ class Chess
 
   def valid_piece?(input)
     # converts input to equivalent index and checks if that index matches a piece of their color
-    index = @chessboard.input_to_index(input) 
+    index = input_to_index(input) 
     if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
       true
     elsif @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
@@ -58,6 +67,15 @@ class Chess
     else
       puts 'Unrecognised Piece - Please try again'
       false
+    end
+  end
+
+  def legal_move?(first_input, second_input)
+    piece_class = input_to_class(first_input) # converts the first input to a class
+    original_position = input_to_index(first_input) # converts the first input to index
+    new_position = input_to_index(second_input) # converts the second input to index
+    piece_class.moves.each do |x, y| # returns true if new position matches any of the piece's move set
+      return true if new_position == [(original_position[0] + x), (original_position[1] + y)]
     end
   end
 end
