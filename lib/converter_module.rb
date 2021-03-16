@@ -29,8 +29,13 @@ module Converter
     end
   end
 
-  def input_to_class(input, current_position = [])
+  def input_to_class(input)
     piece = input_to_piece(input)
-    piece_to_class(piece, current_position)
+    index = input_to_index(input)
+    if ['♟', '♙'].include?(piece)
+      piece_to_class(piece, index)
+    else
+      piece_to_class(piece)
+    end
   end
 end
