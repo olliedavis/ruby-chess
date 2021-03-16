@@ -11,7 +11,8 @@ class Chess
   end
 
   def start_turn
-    input = choose_piece_input
+    input = choose_piece_input # returns the user's choice
+    validator(input) # checks if the input is valid
   end
 
   def choose_piece_input
@@ -28,7 +29,8 @@ class Chess
   end
 
   def valid_piece?(input)
-    index = @chessboard.input_to_index(input)
+    # converts input to eqivalent index and checks if that index matches a piece of their color
+    index = @chessboard.input_to_index(input) 
     if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
       true
     elsif @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
@@ -40,6 +42,7 @@ class Chess
   end
 
   def validator(input)
-    choose_piece_input if valid_input?(input) || valid_piece?(input) == false
+    # returns to choose_piece_input if input is not valid
+    choose_piece_input if valid_input?(input) || valid_piece?(input) == false 
   end
 end
