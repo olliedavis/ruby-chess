@@ -23,15 +23,23 @@ class Chess
   def valid_input?(input)
     return true if input.length == 2 && input[0].between?('A', 'H') && input[1].between?('1', '8')
 
-    puts 'Unrecognised - Please try again'
+    puts 'Unrecognised input - Please try again like this: B2'
     false
   end
 
   def valid_piece?(input)
-    return true if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
+    index = @chessboard.input_to_index(input)
+    if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
+      true
+    elsif @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
+      true
+    else
+      puts 'Unrecognised Piece - Please try again'
+      false
+    end
+  end
 
-    return true if @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[input[0]][input[1]] == piece }
-
-    false
+  def validator(input)
+    choose_piece_input if valid_input?(input) || valid_piece?(input) == false
   end
 end
