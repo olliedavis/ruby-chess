@@ -49,7 +49,7 @@ class Chess
   end
 
   def valid_piece?(input)
-    # converts input to eqivalent index and checks if that index matches a piece of their color
+    # converts input to equivalent index and checks if that index matches a piece of their color
     index = @chessboard.input_to_index(input) 
     if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
       true
