@@ -25,11 +25,12 @@ module Converter
     when '♘', '♞'
       @knight = Knight.new
     when '♙', '♟'
-      @pawn = Pawn.new(current_position, piece)
+      @pawn = Pawn.new(piece, current_position)
     end
   end
 
   def input_to_class(input)
+    # this needs to check for Pawn as Pawn have different moves sets if they have not moved
     piece = input_to_piece(input)
     index = input_to_index(input)
     if ['♟', '♙'].include?(piece)
