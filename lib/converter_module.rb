@@ -12,7 +12,22 @@ module Converter
     board[index[0]][index[1]]
   end
 
+  def piece_to_class(piece, current_position = [])
+    case piece
+    when '♔', '♚'
+      @king = King.new
+    when '♕', '♛'
+      @queen = Queen.new
+    when '♗', '♝'
+      @bishop = Bishop.new
+    when '♖', '♜'
+      @rook = Rook.new
+    when '♘', '♞'
+      @knight = Knight.new
+    when '♙', '♟'
+      @pawn = Pawn.new(current_position, piece)
+    end
+  end
 
-
-
+  
 end
