@@ -12,9 +12,9 @@ describe Chess do
     end
     context 'when an invalid input is provided, ' do
       it 'returns nil' do
-        expect(chess.valid_input?('72')).to be nil
-        expect(chess.valid_input?('Foo')).to be nil
-        expect(chess.valid_input?('1A')).to be nil
+        expect(chess.valid_input?('72')).to be false
+        expect(chess.valid_input?('Foo')).to be false
+        expect(chess.valid_input?('1A')).to be false
       end
     end
   end
