@@ -11,7 +11,7 @@ describe Chess do
       end
     end
     context 'when an invalid input is provided, ' do
-      it 'returns nil' do
+      it 'returns false' do
         expect(chess.valid_input?('72')).to be false
         expect(chess.valid_input?('Foo')).to be false
         expect(chess.valid_input?('1A')).to be false
@@ -21,23 +21,23 @@ describe Chess do
 
   describe '#valid_piece?' do
     context 'when a valid white piece is selected' do
-      xit 'returns true' do
+      it 'returns true' do
         expect(chess.valid_piece?('A1')).to be true
       end
     end
     context 'when white selects a black piece' do
-      xit 'returns false' do
+      it 'returns false' do
         expect(chess.valid_piece?('C8')).to be false
       end
     end
     context 'when a valid black piece is selected' do
-      xit 'returns true' do
+      it 'returns true' do
         chess.instance_variable_set(:@turn_counter, 1)
         expect(chess.valid_piece?('D7')).to be true
       end
     end
     context 'when black selects a white piece' do
-      xit 'returns false' do
+      it 'returns false' do
         chess.instance_variable_set(:@turn_counter, 1)
         expect(chess.valid_piece?('E1')).to be false
       end
