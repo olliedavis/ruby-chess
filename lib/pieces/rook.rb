@@ -11,6 +11,6 @@ class Rook
       (1..7).map { |n| [0, -n] }.freeze,
       # right
       (1..7).map { |n| [0, n] }.freeze
-    ]
+    ].flatten(1)
   end
 end
