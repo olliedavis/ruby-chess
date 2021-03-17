@@ -3,7 +3,7 @@ require_relative 'chess'
 class Game
   def self.start
     introduction
-    Chess.new.game
+    Chess.new.start_round
   end
 
   def self.introduction
