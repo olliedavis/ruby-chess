@@ -42,4 +42,10 @@ class Chess
     puts 'Please enter the coordinates of where you would like to move your piece'
     gets.upcase.chomp
   end
+
+  def move_piece(first_input, second_input)
+    piece = input_to_piece(first_input)
+    index = input_to_index(second_input)
+    @chessboard.board[index[0]][index[1]] == piece
+  end
 end
