@@ -31,7 +31,8 @@ module Converter
 
   def input_to_class(input)
     # this needs to check for Pawn as Pawn have different moves sets if they have not moved
-    piece = input_to_piece(input)
+    board = @chessboard.board
+    piece = input_to_piece(input, board)
     index = input_to_index(input)
     if ['♟', '♙'].include?(piece)
       piece_to_class(piece, index)
