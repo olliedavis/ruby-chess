@@ -16,10 +16,14 @@ class Chess
   end
 
   def start_round
+    @chessboard.current_board
     first_input = first_choice_input
     first_choice_validator(first_input)
     second_input = second_choice_input(first_input)
     second_choice_validator(first_input, second_input)
+    move_piece(first_input, second_input)
+    @turn_counter += 1
+    start_round
   end
 
   def first_choice_input
@@ -46,8 +50,10 @@ class Chess
   end
 
   def move_piece(first_input, second_input)
-    piece = input_to_piece(first_input)
-    index = input_to_index(second_input)
-    @chessboard.board[index[0]][index[1]] == piece
+    piece = input_to_piece(first_input, @chessboard.board)
+    first_index = input_to_index(first_input)
+    second_index = input_to_index(second_input)
+    @chessboard.board[first_index[0]][first_index[1]] = ' '
+    @chessboard.board[second_index[0]][second_index[1]] = piece
   end
 end
