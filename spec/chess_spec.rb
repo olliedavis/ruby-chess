@@ -59,17 +59,17 @@ describe Chess do
         expect(chess.legal_move?('D8', 'F6')).to be true # queen
         expect(chess.legal_move?('C8', 'F5')).to be true # bishop
         expect(chess.legal_move?('B8', 'C6')).to be true # knight
-        expect(chess.legal_move?('A8', 'F5')).to be true # rook
+        expect(chess.legal_move?('A8', 'F8')).to be true # rook
       end
     end
     context "when a provided is not within the piece's moveset" do
-      xit 'returns false' do
-        expect(chess.legal_move?([0, 4], [4, 3])).to be false  # king
-        expect(chess.legal_move?([0, 3], [3, 1])).to be false  # queen
-        expect(chess.legal_move?([0, 2], [1, 2])).to be false  # bishop
-        expect(chess.legal_move?([0, 1], [1, 1])).to be false  # knight
-        expect(chess.legal_move?([0, 0], [1, 1])).to be false  # rook
-        expect(chess.legal_move?([1, 0], [5, 1])).to be false  # pawn
+      it 'returns false' do
+        expect(chess.legal_move?('E8', 'D4')).to be false  # king
+        expect(chess.legal_move?('D8', 'B5')).to be false  # queen
+        expect(chess.legal_move?('C8', 'C7')).to be false  # bishop
+        expect(chess.legal_move?('B1', 'C1')).to be false  # knight
+        expect(chess.legal_move?('A8', 'B7')).to be false  # rook
+        expect(chess.legal_move?('A7', 'B3')).to be false  # pawn
       end
     end
   end
