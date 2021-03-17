@@ -2,7 +2,7 @@ class Rook
   attr_reader :moves
 
   def initialize
-    @moves =[
+    @moves = [
       # up
       (1..7).map { |n| [-n, 0] }.freeze,
       # down
@@ -11,6 +11,6 @@ class Rook
       (1..7).map { |n| [0, -n] }.freeze,
       # right
       (1..7).map { |n| [0, n] }.freeze
-    ].flatten(1)
+    ]
   end
 end
