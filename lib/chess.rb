@@ -17,7 +17,9 @@ class Chess
 
   def start_round
     first_input = first_choice_input
+    first_choice_validator(first_input)
     second_input = second_choice_input(first_input)
+    second_choice_validator(first_input, second_input)
   end
 
   def first_choice_input
