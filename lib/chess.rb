@@ -77,5 +77,6 @@ class Chess
     piece_class.moves.each do |x, y| # returns true if new position matches any of the piece's move set
       return true if new_position == [(original_position[0] + x), (original_position[1] + y)]
     end
+    false
   end
 end
