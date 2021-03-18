@@ -1,4 +1,4 @@
-require_relative 'chess'
+require_relative 'lib/chess.rb'
 
 class Game
   def self.start
