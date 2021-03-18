@@ -12,7 +12,7 @@ module Converter
     board[index[0]][index[1]]
   end
 
-  def piece_to_class(piece, current_position = [])
+  def piece_to_class(piece, index = [])
     case piece
     when '♔', '♚'
       @king = King.new
@@ -25,7 +25,7 @@ module Converter
     when '♘', '♞'
       @knight = Knight.new
     when '♙', '♟'
-      @pawn = Pawn.new(piece, current_position)
+      @pawn = Pawn.new(piece, index)
     end
   end
 
