@@ -3,6 +3,7 @@ require_relative 'pieces'
 require_relative 'converter_module'
 require_relative 'InputValidator_module'
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
+
 class Chess
   include Pieces
   include Converter
