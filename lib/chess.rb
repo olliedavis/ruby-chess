@@ -19,9 +19,7 @@ class Chess
   def start_round
     @chessboard.current_board
     first_input = first_choice_input
-    first_choice_validator(first_input)
     second_input = second_choice_input(first_input)
-    second_choice_validator(first_input, second_input)
     move_piece(first_input, second_input)
     @turn_counter += 1
     start_round
