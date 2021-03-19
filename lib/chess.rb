@@ -57,4 +57,15 @@ class Chess
     @chessboard.board[first_index[0]][first_index[1]] = ' '
     @chessboard.board[second_index[0]][second_index[1]] = piece
   end
+
+  def taken_piece?(second_input)
+    new_position = input_to_piece(second_input, @chessboard.board)  
+    if turn_counter.even? && @black_pieces.inlcude?(new_position)
+      true
+    elsif turn_counter.odd? && @white_pieces.inlcude?(new_position)
+      true
+    else
+      false
+    end
+  end
 end
