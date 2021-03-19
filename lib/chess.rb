@@ -59,10 +59,10 @@ class Chess
   end
 
   def taken_piece?(second_input)
-    new_position = input_to_piece(second_input, @chessboard.board)  
-    if turn_counter.even? && @black_pieces.inlcude?(new_position)
+    new_position = input_to_piece(second_input, @chessboard.board) # converts new new_position to a piece
+    if turn_counter.even? && @black_pieces.inlcude?(new_position) # contains black piece and it's white's turn?
       true
-    elsif turn_counter.odd? && @white_pieces.inlcude?(new_position)
+    elsif turn_counter.odd? && @white_pieces.inlcude?(new_position) # contains white piece and it's blacks's turn?
       true
     else
       false
