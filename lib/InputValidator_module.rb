@@ -1,13 +1,14 @@
 module InputValidator
   def first_choice_validator(input)
     # returns to start if input is not valid
-    first_choice_input if valid_input?(input) == false || valid_piece?(input) == false
+    return false if valid_input?(input) == false || valid_piece?(input) == false
   end
 
   def second_choice_validator(first_input, second_input)
     # returns to 2nd choice input if input is not valid
-    second_choice_input(first_input) if valid_input?(second_input) == false || legal_move?(first_input,
-                                                                                           second_input) == false
+    return false if valid_input?(second_input) == false || legal_move?(first_input, second_input) == false
+
+    true
   end
 
   def valid_input?(input)

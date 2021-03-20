@@ -27,13 +27,16 @@ class Chess
 
   def first_choice_input
     first_input = choose_piece_input # returns the user's choice
-    first_choice_validator(first_input) # checks if the input is valid
+    return first_choice_input if first_choice_validator(first_input) == false # checks if the input is valid
+
     first_input
   end
 
   def second_choice_input(first_input)
     second_input = move_piece_input # returns the user's choice
-    second_choice_validator(first_input, second_input) # checks if the input is valid
+    # checks if the input is valid
+    return second_choice_input(first_input) if second_choice_validator(first_input, second_input) == false
+
     second_input
   end
 
