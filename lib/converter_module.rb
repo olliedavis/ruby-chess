@@ -7,12 +7,12 @@ module Converter
     [(8 - row), column]
   end
 
-  def input_to_piece(input, board)
+  def input_to_piece(input)
     index = input_to_index(input)
-    board[index[0]][index[1]]
+    @chessboard.board[index[0]][index[1]]
   end
 
-  def piece_to_class(piece, index = [])
+  def piece_to_class(piece, first_index = [], second_index = [])
     case piece
     when '♔', '♚'
       @king = King.new
@@ -25,17 +25,17 @@ module Converter
     when '♘', '♞'
       @knight = Knight.new
     when '♙', '♟'
-      @pawn = Pawn.new(piece, index)
+      @pawn = Pawn.new(piece, first_index, second_index, @chessboard.board)
     end
   end
 
-  def input_to_class(input)
+  def input_to_class(first_input, second_input)
     # this needs to check for Pawn as Pawn have different moves sets if they have not moved
-    board = @chessboard.board
-    piece = input_to_piece(input, board)
-    index = input_to_index(input)
+    piece = input_to_piece(first_input)
+    first_index = input_to_index(first_input)
+    second_index = input_to_index(second_input)
     if ['♟', '♙'].include?(piece)
-      piece_to_class(piece, index)
+      piece_to_class(piece, first_index, second_index)
     else
       piece_to_class(piece)
     end

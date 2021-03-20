@@ -32,7 +32,7 @@ module InputValidator
   end
 
   def legal_move?(first_input, second_input)
-    piece_class = input_to_class(first_input) # converts the first input to a class
+    piece_class = input_to_class(first_input, second_input) # converts the first input to a class
     original_position = input_to_index(first_input) # converts the first input to index
     new_position = input_to_index(second_input) # converts the second input to index
     piece_class.moves.each do |x, y| # returns true if new position matches any of the piece's move set
@@ -43,7 +43,7 @@ module InputValidator
   end
 
   def new_space_free?(second_input)
-    new_position = input_to_piece(second_input, @chessboard.board)
+    new_position = input_to_piece(second_input)
     # new position doesn't contain own piece then it's free to move to
     if @turn_counter.even? && @white_pieces.include?(new_position) == false
       true
