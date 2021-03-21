@@ -33,13 +33,28 @@ class Pawn
 
   def promotion?(piece, second_index)
     if piece == '♟' && second_index[0].zero?
-      true
+      promote_prompt
     elsif piece == '♙' && second_index[0] == 7
-      true
+      promote_prompt
     else
       false
     end
   end
+
+  def promote_prompt
+    puts "Your Pawn has reached the opponent's back rank"
+    puts 'This means you can promote your Pawn to any piece except King'
+    puts 'Please enter the corresponding number of the piece you would like to promote it to'
+    puts '1: Queen, 2: Bishop, 3: Rook, 4: Knight'
+    choice = gets.chomp.to_i
+
+    until choice.between?(1, 4)
+      puts 'Error. Please enter just the number of the piece you would like to promote your Pawn to'
+      puts '1: Queen, 2: Bishop, 3: Rook, 4: Knight'
+      choice = gets.chomp.to_i
+    end
+  end
+
 
 
 end
