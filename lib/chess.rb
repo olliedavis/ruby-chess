@@ -21,6 +21,7 @@ class Chess
     first_input = first_choice_input
     second_input = second_choice_input(first_input)
     move_piece(first_input, second_input)
+    post_move_checks(second_input)
     @turn_counter += 1
     start_round
   end
@@ -73,8 +74,8 @@ class Chess
 
   def post_move_checks(second_input)
     pawn_promotion(second_input)
-    check? # to do
-    checkmate? # to do
+    # check? TODO
+    # checkmate? TODO
   end
 
   def pawn_promotion(second_input)
@@ -83,6 +84,6 @@ class Chess
     return unless ['♙', '♟'].include?(piece) && @pawn.promotion?(index)
 
     new_piece = @pawn.promote_choice(piece)
-    @chessboard.board[index] = new_piece
+    @chessboard.board[index[0]][index[1]] = new_piece
   end
 end
