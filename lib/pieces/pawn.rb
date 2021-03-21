@@ -1,5 +1,9 @@
+require_relative '../converter_module'
+
 class Pawn
   attr_reader :moves
+
+  include Converter
 
   def initialize(piece, first_index, second_index, board)
     @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
