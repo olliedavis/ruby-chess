@@ -60,8 +60,8 @@ module InputValidator
 
   def pawn_free_path?(second_index)
     return true if @chessboard.board[second_index[0]][second_index[1]] == ' '
-    puts 'The pawn is blocked'
 
+    puts 'The pawn is blocked'
     false
   end
 end
