@@ -9,7 +9,7 @@ module Converter
 
   def input_to_piece(input)
     index = input_to_index(input)
-    @chessboard.board[index[0]][index[1]]
+    index_to_piece(index)
   end
 
   def piece_to_class(piece, first_index = [], second_index = [])
@@ -44,5 +44,9 @@ module Converter
   def promotion_choice_to_piece(pawn, choice_int)
     return @black_pieces[choice_int] if pawn == '♙'
     return @white_pieces[choice_int] if pawn == '♟'
+  end
+
+  def index_to_piece(index)
+    @chessboard.board[index[0]][index[1]]
   end
 end
