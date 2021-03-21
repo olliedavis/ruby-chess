@@ -41,8 +41,8 @@ module Converter
     end
   end
 
-  def promotion_choice_to_piece(pawn, choice)
-    return @black_pieces[choice - 1] if pawn == '♙'
-    return @white_pieces[choice - 1] if pawn == '♟'
+  def promotion_choice_to_piece(pawn, choice_int)
+    return @black_pieces[choice_int] if pawn == '♙'
+    return @white_pieces[choice_int] if pawn == '♟'
   end
 end
