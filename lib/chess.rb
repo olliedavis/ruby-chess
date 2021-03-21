@@ -13,6 +13,7 @@ class Chess
     @chessboard = Chessboard.new
     @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
     @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
+    @pawns = ['♙', '♟']
     @turn_counter = 0
   end
 

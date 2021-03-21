@@ -32,12 +32,16 @@ module InputValidator
   end
 
   def legal_move?(first_input, second_input)
+    piece = input_to_piece(first_input)
     piece_class = input_to_class(first_input, second_input) # converts the first input to a class
     original_position = input_to_index(first_input) # converts the first input to index
     new_position = input_to_index(second_input) # converts the second input to index
+
+    return false if new_space_free?(second_input) == false
+    return false if @pawns.any?(piece) && pawn_free_path?(new_position) == false
+
     piece_class.moves.each do |x, y| # returns true if new position matches any of the piece's move set
-      return true if new_position == [(original_position[0] + x),
-                                      (original_position[1] + y)] && new_space_free?(second_input)
+      return true if new_position == [(original_position[0] + x), (original_position[1] + y)]
     end
     false
   end
@@ -52,5 +56,12 @@ module InputValidator
     else
       false
     end
+  end
+
+  def pawn_free_path?(second_index)
+    return true if @chessboard.board[second_index[0]][second_index[1]] == ' '
+    puts 'The pawn is blocked'
+
+    false
   end
 end
