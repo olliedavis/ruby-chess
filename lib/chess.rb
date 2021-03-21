@@ -51,7 +51,11 @@ class Chess
 
   def move_piece_input
     puts 'Please enter the coordinates of where you would like to move your piece'
-    gets.upcase.chomp
+    puts 'If you would like to change your select piece, please enter UNDO'
+    input = gets.upcase.chomp
+    return start_round if input.upcase == 'UNDO'
+
+    input
   end
 
   def move_piece(first_input, second_input)
