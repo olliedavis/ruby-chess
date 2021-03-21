@@ -8,10 +8,10 @@ class Pawn
   def initialize(piece, first_index, second_index, board)
     @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
     @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
-    @moves = move_check(piece, first_index, second_index, board)
+    @moves = move_checking(piece, first_index, second_index, board)
   end
 
-  def move_check(piece, first_index, second_index, board)
+  def move_checking(piece, first_index, second_index, board)
     if first_index[1] != second_index[1] && legal_diagonal?(piece, second_index, board)
       return [[-1, -1], [-1, 1]] if piece == '♟'
       return [[1, 1], [1, -1]] if piece == '♙'
@@ -54,5 +54,14 @@ class Pawn
       choice_int = gets.chomp.to_i
     end
     promotion_choice_to_piece(pawn, choice_int)
+  end
+
+  def possible_white_moves_for_check(first_index, board)
+    potential_moves = []
+    if @black_pieces.any?{ |piece| piece == board[first_index[0] - 1][first_index[1] - 1] }
+      potential_moves << [[first_index[0] - 1][first_index[1] - 1]]
+    elsif @black_pieces.any?{ |piece| piece == board[first_index[0] - 1][first_index[1] + 1] }
+      potential_moves << [[first_index[0] - 1][first_index[1] + 1]]
+    end
   end
 end
