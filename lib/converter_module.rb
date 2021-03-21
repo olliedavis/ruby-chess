@@ -40,4 +40,9 @@ module Converter
       piece_to_class(piece)
     end
   end
+
+  def promotion_choice_to_piece(pawn, choice)
+    return @black_pieces[choice - 1] if pawn == '♙'
+    return @white_pieces[choice - 1] if pawn == '♟'
+  end
 end
