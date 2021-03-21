@@ -31,8 +31,8 @@ class Pawn
     end
   end
 
-  def promotion?(piece, first_index, second_index, board)
-    if piece == '♟' && second_index[0] == 0
+  def promotion?(piece, second_index)
+    if piece == '♟' && second_index[0].zero?
       true
     elsif piece == '♙' && second_index[0] == 7
       true
@@ -41,5 +41,5 @@ class Pawn
     end
   end
 
-  
+
 end
