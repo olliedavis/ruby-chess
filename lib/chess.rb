@@ -11,8 +11,8 @@ class Chess
 
   def initialize
     @chessboard = Chessboard.new
-    @black_pieces = ['♖', '♘', '♗', '♕', '♔', '♙']
-    @white_pieces = ['♜', '♞', '♝', '♚', '♛', '♟']
+    @black_pieces = ['♕', '♗', '♖', '♘', '♔', '♙']
+    @white_pieces = ['♛', '♝', '♜', '♞', '♚', '♟']
     @turn_counter = 0
   end
 
