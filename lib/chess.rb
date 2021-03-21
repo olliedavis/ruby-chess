@@ -11,8 +11,8 @@ class Chess
 
   def initialize
     @chessboard = Chessboard.new
-    @black_pieces = ['♕', '♗', '♖', '♘', '♔', '♙']
-    @white_pieces = ['♛', '♝', '♜', '♞', '♚', '♟']
+    @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
+    @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
     @turn_counter = 0
   end
 
@@ -69,5 +69,20 @@ class Chess
     else
       false
     end
+  end
+
+  def post_move_checks(second_input)
+    pawn_promotion(second_input)
+    check? # to do
+    checkmate? # to do
+  end
+
+  def pawn_promotion(second_input)
+    index = input_to_index(second_input)
+    piece = input_to_piece(second_input)
+    return unless ['♙', '♟'].include?(piece) && @pawn.promotion?(index)
+
+    new_piece = @pawn.promote_choice(piece)
+    @chessboard.board[index] = new_piece
   end
 end
