@@ -30,4 +30,16 @@ class Pawn
       false
     end
   end
+
+  def promotion?(piece, first_index, second_index, board)
+    if piece == '♟' && second_index[0] == 0
+      true
+    elsif piece == '♙' && second_index[0] == 7
+      true
+    else
+      false
+    end
+  end
+
+  
 end
