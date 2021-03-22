@@ -56,12 +56,28 @@ class Pawn
     promotion_choice_to_piece(pawn, choice_int)
   end
 
-  def possible_white_moves_for_check(first_index, board)
+  def possible_white_moves_for_check(position, board)
     potential_moves = []
-    if @black_pieces.any?{ |piece| piece == board[first_index[0] - 1][first_index[1] - 1] }
-      potential_moves << [[first_index[0] - 1][first_index[1] - 1]]
-    elsif @black_pieces.any?{ |piece| piece == board[first_index[0] - 1][first_index[1] + 1] }
-      potential_moves << [[first_index[0] - 1][first_index[1] + 1]]
+    if @black_pieces.any? { |piece| piece == board[position[0] - 1][position[1] - 1] }
+      potential_moves << [[position[0] - 1][position[1] - 1]]
     end
+    return unless @black_pieces.any? { |piece| piece == board[position[0] - 1][position[1] + 1] }
+
+    potential_moves << [[position[0] - 1][position[1] + 1]]
+  end
+
+  def possible_black_moves_for_check(position, board)
+    potential_moves = []
+    if @white_pieces.any? { |piece| piece == board[position[0] + 1][position[1] + 1] }
+      potential_moves << [[position[0] - 1][position[1] - 1]]
+    end
+    return unless @white_pieces.any? { |piece| piece == board[position[0] + 1][position[1] - 1] }
+
+    potential_moves << [[position[0] - 1][position[1] + 1]]
+  end
+
+  def possible_moves(piece, position, board)
+    return possible_white_moves_for_check(position, board) if piece == '♟'
+    return possible_black_moves_for_check(position, board) if piece == '♙'
   end
 end
