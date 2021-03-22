@@ -26,4 +26,14 @@ module InCheck
     end
     available_moves
   end
+
+  def locate_king(color)
+    king = '♔' if color == 'black'
+    king = '♚' if color == 'white'
+    @chessboard.board.each_with_index do |row, row_idx|
+      row.each_with_index do |square, square_idx|
+        return [row_idx, square_idx] if square == king
+      end
+    end
+  end
 end
