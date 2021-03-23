@@ -81,7 +81,8 @@ class Chess
 
   def post_move_checks(second_input)
     pawn_promotion(second_input)
-    # check? TODO
+    in_check?('black') if @turn_counter.even?
+    in_check?('white') if @turn_counter.odd?
     # checkmate? TODO
   end
 
