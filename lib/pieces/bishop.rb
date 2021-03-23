@@ -14,15 +14,22 @@ class Bishop
     ].flatten(1)
   end
 
-  def direction(current_position, new_position)
-    if (current_position[0] - new_position[0]).positive? && (current_position[1] - new_position[1]).positive?
-      upwards_left
-    elsif (current_position[0] - new_position[0]).positive? && (current_position[1] - new_position[1]).negative?
-      upwards_right
-    elsif (current_position[0] - new_position[0]).negative? && (current_position[1] - new_position[1]).positive?
-      downwards_left
+  def path(current_position, new_position)
+    cur_x = current_position[0]
+    cur_y = current_position[1]
+    new_x = new_position[0]
+    new_y = new_position[1]
+    x_diff = cur_x - new_x
+    y_diff = cur_y - new_y
+
+    if x_diff.positive? && y_diff.positive?
+      (1..7).map { |n| [cur_x - n, cur_y - n] }
+    elsif x_diff.positive? && y_diff.negative?
+      (1..7).map { |n| [cur_x - n, cur_y + n] }
+    elsif x_diff.negative? && y_diff.positive?
+      (1..7).map { |n| [cur_x + n, cur_y - n] }
     else
-      downwards_right
+      (1..7).map { |n| [cur_x + n, cur_y + n] }
     end
   end
 end
