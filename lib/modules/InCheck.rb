@@ -2,7 +2,7 @@ module InCheck
   def in_check?(color)
     king_location = locate_king(color)
     potential_moves = all_available_moves(color)
-    return true if potential_moves.any?(king_location)
+    puts "true" if potential_moves.any?(king_location)
 
     false
   end
@@ -23,7 +23,7 @@ module InCheck
     pos_array.each do |position|
       piece = index_to_piece(position)
       if @pawns.any?(piece)
-        available_moves.push(@pawn.possible_moves(position, @chessboard.board)) 
+        available_moves.push(@pawn.possible_moves(piece, position, @chessboard.board))
       else
         piece_class = piece_to_class(piece)
         piece_class.moves.each { |x, y| available_moves.push([(position[0] + x), (position[1] + y)]) }
