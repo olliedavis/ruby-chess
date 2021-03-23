@@ -1,4 +1,4 @@
-require_relative 'pieces'
+require_relative 'modules/Pieces'
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 
 class Chessboard

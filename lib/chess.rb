@@ -1,13 +1,15 @@
 require_relative 'board'
-require_relative 'pieces'
-require_relative 'converter_module'
-require_relative 'InputValidator_module'
+require_relative 'modules/Pieces'
+require_relative 'modules/Converter'
+require_relative 'modules/InputValidator'
+require_relative 'modules/InCheck'
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 
 class Chess
   include Pieces
   include Converter
   include InputValidator
+  include InCheck
 
   def initialize
     @chessboard = Chessboard.new
