@@ -17,11 +17,11 @@ class Rook
     y_diff = cur_y - new_position[1]
     path = []
 
-    if x_diff.positive? && y_diff.zero?
+    if x_diff.positive?
       path.push([cur_x -= 1, cur_y]) until cur_x.zero?
-    elsif x_diff.negative? && y_diff.zero?
+    elsif x_diff.negative?
       path.push([cur_x += 1, cur_y]) until cur_x == 7
-    elsif y_diff.positive? && x_diff.zero?
+    elsif y_diff.positive?
       path.push([cur_x, cur_y -= 1]) until cur_y.zero?
     else
       path.push([cur_x, cur_y += 1]) until cur_y == 7
