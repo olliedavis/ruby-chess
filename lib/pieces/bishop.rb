@@ -24,7 +24,7 @@ class Bishop
     if x_diff.positive? && y_diff.positive?
       path.push([cur_x -= 1, cur_y -= 1]) until cur_x.zero? || cur_y.zero?
     elsif x_diff.positive? && y_diff.negative?
-      path.push([cur_x -= 1, cur_y += 1]) until cur_x .zero? || cur_y == 7
+      path.push([cur_x -= 1, cur_y += 1]) until cur_x.zero? || cur_y == 7
     elsif x_diff.negative? && y_diff.positive?
       path.push([cur_x += 1, cur_y -= 1]) until cur_x == 7 || cur_y.zero?
     else
