@@ -21,9 +21,9 @@ class Queen
     y_diff = cur_y - new_position[1]
 
     if x_diff.zero? || y_diff.zero?
-     p path_straight(cur_x, cur_y, x_diff, y_diff)
+      path_straight(cur_x, cur_y, x_diff, y_diff)
     else
-     p path_diagn(cur_x, cur_y, x_diff, y_diff)
+      path_diagn(cur_x, cur_y, x_diff, y_diff)
     end
   end
 
@@ -57,5 +57,3 @@ class Queen
     path
   end
 end
-
-Queen.new.path([5, 4], [2, 1])
