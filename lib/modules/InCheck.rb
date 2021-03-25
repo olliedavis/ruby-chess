@@ -10,7 +10,7 @@ module InCheck
   def locate_king(color)
     king = '♔' if color == 'black'
     king = '♚' if color == 'white'
-    @chessboard.board.each_with_index do |row, row_idx|
+    @board.each_with_index do |row, row_idx|
       row.each_with_index do |square, square_idx|
         return [row_idx, square_idx] if square == king
       end
@@ -23,10 +23,11 @@ module InCheck
     pos_array.each do |position|
       piece = index_to_piece(position)
       if @pawns.any?(piece)
-        available_moves.push(@pawn.possible_moves(piece, position, @chessboard.board))
+        available_moves.push(@pawn.moves)
       else
-        piece_class = piece_to_class(piece)
-        piece_class.moves.each { |x, y| available_moves.push([(position[0] + x), (position[1] + y)]) }
+        piece_class = piece_to_class(piece, position)
+        piece_moves = piece_class.moves
+        piece_moves.each { |x, y| available_moves.push([(position[0] + x), (position[1] + y)]) }
       end
     end
     available_moves
@@ -34,7 +35,7 @@ module InCheck
 
   def all_pieces_on_board(color)
     pos_array = []
-    @chessboard.board.each_with_index do |row, row_idx|
+    @board.each_with_index do |row, row_idx|
       row.each_with_index do |square, square_idx|
         if @white_pieces.any?(square) && color == 'white'
           pos_array << [row_idx, square_idx]
