@@ -12,20 +12,20 @@ module Converter
     index_to_piece(index)
   end
 
-  def piece_to_class(piece, first_index = [], second_index = [])
+  def piece_to_class(piece, first_index, second_index = [])
     case piece
     when '♔', '♚'
-      @king = King.new
+      @king = King.new(first_index, @board)
     when '♘', '♞'
-      @knight = Knight.new
+      @knight = Knight.new(first_index, @board)
     when '♕', '♛'
-      @queen = Queen.new(first_index)
+      @queen = Queen.new(first_index, @board)
     when '♗', '♝'
-      @bishop = Bishop.new(first_index)
+      @bishop = Bishop.new(first_index, @board)
     when '♖', '♜'
-      @rook = Rook.new(first_index)
+      @rook = Rook.new(first_index, @board)
     when '♙', '♟'
-      @pawn = Pawn.new(piece, first_index, second_index, @chessboard.board)
+      @pawn = Pawn.new(piece, first_index, second_index, @board)
     end
   end
 
@@ -34,10 +34,10 @@ module Converter
     piece = input_to_piece(first_input)
     first_index = input_to_index(first_input)
     second_index = input_to_index(second_input)
-    if ['♟', '♙', '♕', '♛', '♗', '♝', '♖', '♜'].include?(piece)
+    if ['♟', '♙'].include?(piece)
       piece_to_class(piece, first_index, second_index)
     else
-      piece_to_class(piece)
+      piece_to_class(piece, first_index)
     end
   end
 
