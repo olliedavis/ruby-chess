@@ -7,7 +7,6 @@ class Queen
   include PathCreator
 
   def initialize(current_position)
-    chess = Chess.new
     all_paths = path_creator(current_position, all_moves)
     @moves = path_checker(all_paths, chess.board)
   end
@@ -25,5 +24,3 @@ class Queen
     ]
   end
 end
-
-Queen.new([5, 4])
