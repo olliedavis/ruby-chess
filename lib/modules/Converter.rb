@@ -16,14 +16,14 @@ module Converter
     case piece
     when '♔', '♚'
       @king = King.new
-    when '♕', '♛'
-      @queen = Queen.new
-    when '♗', '♝'
-      @bishop = Bishop.new
-    when '♖', '♜'
-      @rook = Rook.new
     when '♘', '♞'
       @knight = Knight.new
+    when '♕', '♛'
+      @queen = Queen.new(first_index)
+    when '♗', '♝'
+      @bishop = Bishop.new(first_index)
+    when '♖', '♜'
+      @rook = Rook.new(first_index)
     when '♙', '♟'
       @pawn = Pawn.new(piece, first_index, second_index, @chessboard.board)
     end
@@ -34,7 +34,7 @@ module Converter
     piece = input_to_piece(first_input)
     first_index = input_to_index(first_input)
     second_index = input_to_index(second_input)
-    if ['♟', '♙'].include?(piece)
+    if ['♟', '♙', '♕', '♛', '♗', '♝', '♖', '♜'].include?(piece)
       piece_to_class(piece, first_index, second_index)
     else
       piece_to_class(piece)
