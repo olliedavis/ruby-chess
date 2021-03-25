@@ -5,7 +5,7 @@ class Chessboard
   attr_accessor :board
 
   include Pieces
-  
+
   def initialize
     @board = [
       [BLACK_ROOK, BLACK_KNIGHT, BLACK_BISHOP, BLACK_QUEEN, BLACK_KING, BLACK_BISHOP, BLACK_KNIGHT, BLACK_ROOK],
@@ -17,8 +17,6 @@ class Chessboard
       [WHITE_PAWN] * 8,
       [WHITE_ROOK, WHITE_KNIGHT, WHITE_BISHOP, WHITE_KING, WHITE_QUEEN, WHITE_BISHOP, WHITE_KNIGHT, WHITE_ROOK]
     ]
-    @rows = @board[0..8]
-    @columns = @board.transpose[0..8]
   end
 
   def current_board
@@ -33,7 +31,7 @@ class Chessboard
     puts ' | A | B | C | D | E | F | G | H |'
     puts "\n"
   end
-  
+
   def position_taken?(new_position)
     return true if @board[new_position] != ' '
 
