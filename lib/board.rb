@@ -32,23 +32,8 @@ class Chessboard
     puts "\n"
   end
 
-  def position_taken?(new_position)
-    return true if @board[new_position] != ' '
-
-    false
-  end
-
   def taken_piece(position, piece)
     @board[position] = piece
   end
 
-  def pieces_left_count
-    count = 0
-    @board.each do |row|
-      row.each do |square|
-        count += 1 if square != ' '
-      end
-    end
-    count
-  end
 end
