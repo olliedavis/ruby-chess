@@ -6,6 +6,8 @@ require_relative 'modules/InCheck'
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 
 class Chess
+  attr_reader :board
+  
   include Pieces
   include Converter
   include InputValidator
@@ -13,6 +15,7 @@ class Chess
 
   def initialize
     @chessboard = Chessboard.new
+    @board = @chessboard.board
     @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
     @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
     @pawns = ['♙', '♟']
