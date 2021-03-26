@@ -7,7 +7,7 @@ Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
 
 class Chess
   attr_reader :board
-  
+
   include Pieces
   include Converter
   include InputValidator
@@ -67,8 +67,8 @@ class Chess
     piece = input_to_piece(first_input)
     first_index = input_to_index(first_input)
     second_index = input_to_index(second_input)
-    @chessboard.board[first_index[0]][first_index[1]] = ' '
-    @chessboard.board[second_index[0]][second_index[1]] = piece
+    @board[first_index[0]][first_index[1]] = ' '
+    @board[second_index[0]][second_index[1]] = piece
   end
 
   def taken_piece?(second_input)
@@ -84,8 +84,11 @@ class Chess
 
   def post_move_checks(second_input)
     pawn_promotion(second_input)
+    return unless @turn_counter > 3
+
     in_check?('black') if @turn_counter.even?
     in_check?('white') if @turn_counter.odd?
+
     # checkmate? TODO
   end
 
@@ -95,6 +98,6 @@ class Chess
     return unless ['♙', '♟'].include?(piece) && @pawn.promotion?(index)
 
     new_piece = @pawn.promote_choice(piece)
-    @chessboard.board[index[0]][index[1]] = new_piece
+    @board[index[0]][index[1]] = new_piece
   end
 end
