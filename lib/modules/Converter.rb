@@ -12,7 +12,7 @@ module Converter
     index_to_piece(index)
   end
 
-  def piece_to_class(piece, first_index, second_index = [])
+  def piece_to_class(piece, first_index, second_index =[])
     case piece
     when '♔', '♚'
       @king = King.new(first_index, @board)
@@ -25,7 +25,7 @@ module Converter
     when '♖', '♜'
       @rook = Rook.new(first_index, @board)
     when '♙', '♟'
-      @pawn = Pawn.new(piece, first_index, second_index, @board)
+      @pawn = Pawn.new(piece, first_index, @board, second_index)
     end
   end
 
@@ -48,5 +48,13 @@ module Converter
 
   def index_to_piece(index)
     @chessboard.board[index[0]][index[1]]
+  end
+
+  def moves_to_index(original_pos, all_moves)
+    indexed_arr = []
+    all_moves.each do |x, y|
+      indexed_arr << [(original_pos[0] + x), (original_pos[1] + y)]
+    end
+    indexed_arr
   end
 end
