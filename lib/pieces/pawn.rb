@@ -5,10 +5,11 @@ class Pawn
 
   include Converter
 
-  def initialize(piece, first_index, second_index, board)
+  def initialize(piece, first_index, board, second_index = 6)
     @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
     @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
-    @moves = move_checking(piece, first_index, second_index, board)
+    all_moves = move_checking(piece, first_index, second_index, board)
+    @moves = moves_to_index(first_index, all_moves)
   end
 
   def move_checking(piece, first_index, second_index, board)
@@ -61,5 +62,4 @@ class Pawn
     end
     promotion_choice_to_piece(pawn, choice_int)
   end
-
 end
