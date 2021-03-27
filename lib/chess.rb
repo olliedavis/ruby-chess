@@ -1,9 +1,8 @@
 require_relative 'board'
-require_relative 'modules/Pieces'
-require_relative 'modules/Converter'
-require_relative 'modules/InputValidator'
-require_relative 'modules/InCheck'
+
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
+Dir['../lib/modules/*.rb'].sort.each { |file| require file }
+
 
 class Chess
   attr_reader :board
