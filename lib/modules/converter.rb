@@ -12,7 +12,7 @@ module Converter
     index_to_piece(index)
   end
 
-  def piece_to_class(piece, first_index, second_index =[])
+  def piece_to_class(piece, first_index, second_index = [])
     case piece
     when '♔', '♚'
       @king = King.new(first_index, @board)
