@@ -1,11 +1,18 @@
 module InCheck
+  def check?
+    in_check?('black') if @turn_counter.odd? && @turn_counter > 1
+    in_check?('white') if @turn_counter.even? && @turn_counter > 1
+  end
+
   def in_check?(color)
     king_location = locate_king(color)
-    potential_moves = all_available_moves(color).flatten(1)
-    puts 'true' if potential_moves.any?(king_location) # testing code - to be removed
-    return true if potential_moves.any?(king_location)
+    potential_moves = all_available_moves('white').flatten(1) if color == 'black'
+    potential_moves = all_available_moves('black').flatten(1) if color == 'white'
 
-    false
+    return false unless potential_moves.any?(king_location)
+
+    puts 'White Player, your King is in check' if @turn_counter.even?
+    puts 'Black Player, your King is in check' if @turn_counter.odd?
   end
 
   def locate_king(color)
