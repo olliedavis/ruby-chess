@@ -13,20 +13,29 @@ class Pawn
   end
 
   def move_checking(piece, first_index, second_index, board)
-    # if the requested move is diagonal, and legal, return the allowed move set
-    if first_index[1] != second_index[1] && legal_diagonal?(piece, second_index, board)
-      return [[-1, -1], [-1, 1]] if piece == '♟'
-      return [[1, 1], [1, -1]] if piece == '♙'
+    # if the requested move is diagonal, and legal, return the diagonal move set
+    return diagonal(piece) if first_index[1] != second_index[1] && legal_diagonal?(piece, second_index, board)
 
     # if the piece has't moved, return a two position move set
-    elsif first_index[0] == 1 || first_index[0] == 6
-      return [[-1, 0], [-2, 0]] if piece == '♟'
-      return [[1, 0], [2, 0]] if piece == '♙'
-    else
-      # if it has been moved, return a single position move set
-      return [[-1, 0]] if piece == '♟'
-      return [[1, 0]] if piece == '♙'
-    end
+    return two_moves(piece) if first_index[0] == 1 || first_index[0] == 6
+
+    # else return a single position move set
+    one_move(piece)
+  end
+
+  def diagonal(piece)
+    return [[-1, -1], [-1, 1]] if piece == '♟'
+    return [[1, 1], [1, -1]] if piece == '♙'
+  end
+
+  def two_moves(piece)
+    return [[-1, 0], [-2, 0]] if piece == '♟'
+    return [[1, 0], [2, 0]] if piece == '♙'
+  end
+
+  def one_move(piece)
+    return [[-1, 0]] if piece == '♟'
+    return [[1, 0]] if piece == '♙'
   end
 
   def legal_diagonal?(piece, second_index, board)
@@ -49,8 +58,7 @@ class Pawn
   end
 
   def promote_choice(pawn)
-    puts "Your Pawn has reached the opponent's back rank"
-    puts 'This means you can promote your Pawn to any piece except King'
+    puts "Your Pawn has reached the opponent's back rank. This means you can promote your Pawn to any piece except King"
     puts 'Please enter the corresponding number of the piece you would like to promote it to'
     puts '1: Queen, 2: Bishop, 3: Rook, 4: Knight'
     choice_int = gets.chomp.to_i
