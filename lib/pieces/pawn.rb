@@ -23,6 +23,7 @@ class Pawn
     one_move(piece)
   end
 
+  # start of move sets
   def diagonal(piece)
     return [[-1, -1], [-1, 1]] if piece == '♟'
     return [[1, 1], [1, -1]] if piece == '♙'
@@ -37,22 +38,25 @@ class Pawn
     return [[-1, 0]] if piece == '♟'
     return [[1, 0]] if piece == '♙'
   end
+  # end of move sets
 
   def legal_diagonal?(piece, second_index, board)
     # return true if the requested new position contains an oppenent piece
-    if piece == '♟' && @black_pieces.any? { |black_piece| black_piece == board[second_index[0]][second_index[1]] }
+    new_position = board[second_index[0]][second_index[1]]
+    if piece == '♟' && @black_pieces.any? { |black_piece| black_piece == new_position }
       true
-    elsif piece == '♙' && @white_pieces.any? { |white_piece| white_piece == board[second_index[0]][second_index[1]] }
+    elsif piece == '♙' && @white_pieces.any? { |white_piece| white_piece == new_position }
       true
     else
       false
     end
   end
 
-  def promotion?(second_index)
+  def promotion?(new_position)
+    x_axis = new_position[0]
     # returns true if the piece has reached the end of the board
     # as pawns can only move forward, a color doesn't need to be specifed
-    return true if second_index[0].zero? || second_index[0] == 7
+    return true if x_axis.zero? || x_axis == 7
 
     false
   end
