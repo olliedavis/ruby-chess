@@ -27,13 +27,8 @@ class Chessboard
         print " #{@board[y][n]} |"
       end
       puts "\n --------------------------------- "
-    end 
+    end
     puts ' | A | B | C | D | E | F | G | H |'
     puts "\n"
   end
-
-  def taken_piece(position, piece)
-    @board[position] = piece
-  end
-
 end
