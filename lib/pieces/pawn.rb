@@ -1,4 +1,4 @@
-require_relative '../modules/Converter'
+require_relative '../modules/converter'
 
 class Pawn
   attr_reader :moves

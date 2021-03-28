@@ -1,4 +1,4 @@
-require_relative '../modules/PathCreator'
+require_relative '../modules/path_creator'
 
 class Knight
   attr_reader :moves

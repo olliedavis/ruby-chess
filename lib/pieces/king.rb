@@ -1,4 +1,4 @@
-require_relative '../modules/PathCreator'
+require_relative '../modules/path_creator'
 
 class King
   attr_reader :moves
