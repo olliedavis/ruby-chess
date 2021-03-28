@@ -14,7 +14,7 @@ class Pawn
 
   def move_checking(piece, first_index, second_index, board)
     # if the requested move is diagonal, and legal, return the allowed move set
-    if first_index[1] != second_index[1] && legal_diagonal?(piece, second_index, board) 
+    if first_index[1] != second_index[1] && legal_diagonal?(piece, second_index, board)
       return [[-1, -1], [-1, 1]] if piece == '♟'
       return [[1, 1], [1, -1]] if piece == '♙'
 
