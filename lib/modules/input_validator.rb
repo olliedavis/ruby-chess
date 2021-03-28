@@ -21,9 +21,11 @@ module InputValidator
   def valid_piece?(input)
     # converts input to equivalent index and checks if that index matches a piece of their color
     index = input_to_index(input)
-    if @turn_counter.even? && @white_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
+    square = @chessboard.board[index[0]][index[1]]
+
+    if @turn_counter.even? && @white_pieces.any? { |piece| square == piece }
       true
-    elsif @turn_counter.odd? && @black_pieces.any? { |piece| @chessboard.board[index[0]][index[1]] == piece }
+    elsif @turn_counter.odd? && @black_pieces.any? { |piece| square == piece }
       true
     else
       puts 'Unrecognised Piece - Please try again'
@@ -38,9 +40,8 @@ module InputValidator
     new_position = input_to_index(second_input) # converts the second input to index
     return false if @pawns.any?(piece) && pawn_free_path?(curr_position, new_position) == false
 
-    piece_class.moves.each do |x, y| # returns true if new position matches any of the piece's move set
-      return true if new_position == [x, y]
-    end
+    # returns true if new position matches any of the piece's move set
+    piece_class.moves.each { |x, y| return true if new_position == [x, y] }
     false
   end
 
