@@ -9,9 +9,9 @@ class Knight
     @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
     @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
     all_moves = [[[-2, -1], [-1, -2], [-2, 1], [-1, 2], [1, -2], [2, -1], [1, 2], [2, 1]]]
-    all_paths = path_creator(current_position, all_moves)
+    all_paths = path_creator(current_position, all_moves).flatten(1)
     colour = colour(current_position, board)
-    @moves = path_checker(all_paths, board, colour)
+    @moves = king_and_knight_path(all_paths, board, colour)
   end
 
   def colour(current_position, board)

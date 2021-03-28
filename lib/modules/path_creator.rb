@@ -31,4 +31,17 @@ module PathCreator
     end
     real_path
   end
+
+  # king and knight need seperate section as they don't have paths, rather just individual positions they can move to
+  def king_and_knight_path(all_paths, board, colour)
+    real_path = []
+    all_paths.each do |position|
+      square = board[position[0]][position[1]]
+      next if colour == 'black' && @white_pieces.any?(square)
+      next if colour == 'white' && @black_pieces.any?(square)
+
+      real_path << position
+    end
+    real_path
+  end
 end
