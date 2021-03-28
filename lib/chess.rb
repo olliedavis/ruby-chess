@@ -22,6 +22,7 @@ class Chess
 
   def start_round
     @chessboard.current_board
+    check?
     first_input = first_choice_input
     second_input = second_choice_input(first_input)
     move_piece(first_input, second_input)
@@ -73,11 +74,6 @@ class Chess
 
   def post_move_checks(second_input)
     pawn_promotion(second_input)
-    return unless @turn_counter > 3
-
-    in_check?('black') if @turn_counter.even?
-    in_check?('white') if @turn_counter.odd?
-
     # checkmate? TODO
   end
 
