@@ -25,8 +25,8 @@ module PathCreator
         real_path << coords
         # if it reaches one of the opposition pieces, break after adding the position to the path
         # this then allows you to take the piece, but not go any further
-        break if colour == 'black' && @white_pieces.any?(square)
-        break if colour == 'white' && @black_pieces.any?(square)
+        break if colour == 'black' && @white_pieces[1..5].any?(square)
+        break if colour == 'white' && @black_pieces[1..5].any?(square)
       end
     end
     real_path
@@ -37,8 +37,8 @@ module PathCreator
     real_path = []
     all_paths.each do |position|
       square = board[position[0]][position[1]]
-      next if colour == 'black' && @white_pieces.any?(square)
-      next if colour == 'white' && @black_pieces.any?(square)
+      next if colour == 'white' && @white_pieces.any?(square)
+      next if colour == 'black' && @black_pieces.any?(square)
 
       real_path << position
     end
