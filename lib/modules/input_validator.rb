@@ -35,11 +35,10 @@ module InputValidator
 
   def legal_move?(first_input, second_input)
     piece = input_to_piece(first_input)
-    piece_class = input_to_class(first_input, second_input) # converts the first input to a class
+    piece_class = input_to_class(first_input) # converts the first input to a class
     curr_position = input_to_index(first_input)
     new_position = input_to_index(second_input) # converts the second input to index
     return false if @pawns.any?(piece) && pawn_free_path?(curr_position, new_position) == false
-
     # returns true if new position matches any of the piece's move set
     piece_class.moves.each { |x, y| return true if new_position == [x, y] }
     false
