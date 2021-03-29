@@ -5,28 +5,26 @@ class Pawn
 
   include Converter
 
-  def initialize(piece, first_index, board, second_index = 6)
+  def initialize(piece, first_index, board)
     @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
     @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
-    all_moves = move_checking(piece, first_index, second_index, board)
+    all_moves = move_checking(piece, first_index, board)
     @moves = moves_to_index(first_index, all_moves)
   end
 
-  def move_checking(piece, first_index, second_index, board)
+  def move_checking(piece, first_index, board)
+    moves = []
     # if the requested move is diagonal, and legal, return the diagonal move set
-    return diagonal(piece) if first_index[1] != second_index[1] && legal_diagonal?(piece, second_index, board)
+    moves.push(diagonal(piece, first_index, board))
 
     # if the piece has't moved, return a two position move set
-    return two_moves(piece) if first_index[0] == 1 || first_index[0] == 6
-
-    # else return a single position move set
-    one_move(piece)
-  end
-
-  # start of move sets
-  def diagonal(piece)
-    return [[-1, -1], [-1, 1]] if piece == '♟'
-    return [[1, 1], [1, -1]] if piece == '♙'
+    if first_index[0] == 1 || first_index[0] == 6
+      moves.push(two_moves(piece))
+    else
+      # else return a single position move set
+      moves.push(one_move(piece))
+    end
+    moves
   end
 
   def two_moves(piece)
@@ -40,16 +38,25 @@ class Pawn
   end
   # end of move sets
 
-  def legal_diagonal?(piece, second_index, board)
-    # return true if the requested new position contains an oppenent piece
-    new_position = board[second_index[0]][second_index[1]]
-    if piece == '♟' && @black_pieces.any? { |black_piece| black_piece == new_position }
-      true
-    elsif piece == '♙' && @white_pieces.any? { |white_piece| white_piece == new_position }
-      true
-    else
-      false
-    end
+  def diagonal(piece, first_index, board)
+    x_axis = first_index[0]
+    y_axis = first_index[1]
+    return diagonal_white(x_axis, y_axis, board) if piece == '♟'
+    return diagonal_black(x_axis, y_axis, board) if piece == '♙'
+  end
+
+  def diagonal_white(x_axis, y_axis, board)
+    return [[-1, -1]] if @black_pieces.any? { |b_piece| b_piece == board[x_axis - 1][y_axis - 1] }
+    return [[-1, 1]] if @black_pieces.any? { |b_piece| b_piece == board[x_axis - 1][y_axis + 1] }
+
+    []
+  end
+
+  def diagonal_black(x_axis, y_axis, board)
+    return [[1, 1]] if @white_pieces.any? { |w_piece| w_piece == board[x_axis + 1][y_axis + 1] }
+    return [[1, -1]] if @white_pieces.any? { |w_piece| w_piece == board[x_axis + 1][y_axis - 1] }
+
+    []
   end
 
   def promotion?(new_position)
