@@ -1,13 +1,10 @@
 module InCheck
-  def check?
-    in_check?('black') if @turn_counter.odd? && @turn_counter > 1
-    in_check?('white') if @turn_counter.even? && @turn_counter > 1
-  end
+  
 
-  def in_check?(color)
-    king_location = locate_king(color)
-    potential_moves = all_available_moves('white').flatten(1) if color == 'black'
-    potential_moves = all_available_moves('black').flatten(1) if color == 'white'
+  def in_check?(colour)
+    king_location = locate_king(colour)
+    potential_moves = all_available_moves('white').flatten(1) if colour == 'black'
+    potential_moves = all_available_moves('black').flatten(1) if colour == 'white'
 
     return false unless potential_moves.any?(king_location)
 
@@ -15,9 +12,9 @@ module InCheck
     puts 'Black Player, your King is in check' if @turn_counter.odd?
   end
 
-  def locate_king(color)
-    king = '♔' if color == 'black'
-    king = '♚' if color == 'white'
+  def locate_king(colour)
+    king = '♔' if colour == 'black'
+    king = '♚' if colour == 'white'
     @board.each_with_index do |row, row_idx|
       row.each_with_index do |square, square_idx|
         return [row_idx, square_idx] if square == king
@@ -25,8 +22,8 @@ module InCheck
     end
   end
 
-  def all_available_moves(color)
-    pos_array = all_pieces_on_board(color)
+  def all_available_moves(colour)
+    pos_array = all_pieces_on_board(colour)
     available_moves = []
     pos_array.each do |position|
       piece = index_to_piece(position)
@@ -41,12 +38,12 @@ module InCheck
     available_moves
   end
 
-  def all_pieces_on_board(color)
+  def all_pieces_on_board(colour)
     pos_array = []
     @board.each_with_index do |row, row_idx|
       row.each_with_index do |square, square_idx|
-        pos_array << [row_idx, square_idx] if @white_pieces.any?(square) && color == 'white'
-        pos_array << [row_idx, square_idx] if @black_pieces.any?(square) && color == 'black'
+        pos_array << [row_idx, square_idx] if @white_pieces.any?(square) && colour == 'white'
+        pos_array << [row_idx, square_idx] if @black_pieces.any?(square) && colour == 'black'
       end
     end
     pos_array
