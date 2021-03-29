@@ -55,7 +55,7 @@ class Pawn
   def promotion?(new_position)
     x_axis = new_position[0]
     # returns true if the piece has reached the end of the board
-    # as pawns can only move forward, a color doesn't need to be specifed
+    # as pawns can only move forward, a colour doesn't need to be specifed
     return true if x_axis.zero? || x_axis == 7
 
     false

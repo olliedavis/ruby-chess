@@ -19,7 +19,7 @@ module InputValidator
   end
 
   def valid_piece?(input)
-    # converts input to equivalent index and checks if that index matches a piece of their color
+    # converts input to equivalent index and checks if that index matches a piece of their colour
     index = input_to_index(input)
     square = @chessboard.board[index[0]][index[1]]
 
