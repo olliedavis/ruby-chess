@@ -1,8 +1,8 @@
 require 'json'
 require_relative 'board'
 
-Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
-Dir['../lib/modules/*.rb'].sort.each { |file| require file }
+Dir['./lib/pieces/*.rb'].sort.each { |file| require file }
+Dir['./lib/modules/*.rb'].sort.each { |file| require file }
 
 class Chess
   attr_reader :board
