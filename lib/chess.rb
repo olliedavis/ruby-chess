@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'board'
 
 Dir['../lib/pieces/*.rb'].sort.each { |file| require file }
@@ -11,6 +12,8 @@ class Chess
   include InputValidator
   include InCheck
   include Checkmate
+  include Save
+  include LoadSave
 
   def initialize
     @chessboard = Chessboard.new
@@ -34,6 +37,8 @@ class Chess
 
   def first_choice_input
     first_input = choose_piece_input # returns the user's choice
+    return save_prompt if first_input.downcase == 'save'
+    return load_game if first_input.downcase == 'load'
     return first_choice_input if first_choice_validator(first_input) == false # checks if the input is valid
 
     first_input
