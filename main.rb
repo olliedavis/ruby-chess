@@ -1,12 +1,12 @@
-require_relative 'chess'
+require_relative 'lib/chess'
 
 class Game
-  def start
+  def self.start
     introduction
     Chess.new.start_round
   end
 
-  def introduction
+  def self.introduction
     puts 'Welcome to chess!'
     puts ''
     puts 'Two players will take it in turn to select a piece, and the position they want to move it to.'
@@ -17,4 +17,4 @@ class Game
   end
 end
 
-Game.new.start
+Game.start
