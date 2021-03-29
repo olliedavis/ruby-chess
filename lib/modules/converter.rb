@@ -12,7 +12,7 @@ module Converter
     index_to_piece(index)
   end
 
-  def piece_to_class(piece, first_index, second_index = [])
+  def piece_to_class(piece, first_index)
     case piece
     when '♔', '♚'
       @king = King.new(first_index, @board)
@@ -25,20 +25,14 @@ module Converter
     when '♖', '♜'
       @rook = Rook.new(first_index, @board)
     when '♙', '♟'
-      @pawn = Pawn.new(piece, first_index, @board, second_index)
+      @pawn = Pawn.new(piece, first_index, @board)
     end
   end
 
-  def input_to_class(first_input, second_input)
-    # this needs to check for Pawn as Pawn have different moves sets if they have not moved
+  def input_to_class(first_input)
     piece = input_to_piece(first_input)
     first_index = input_to_index(first_input)
-    second_index = input_to_index(second_input)
-    if ['♟', '♙'].include?(piece)
-      piece_to_class(piece, first_index, second_index)
-    else
-      piece_to_class(piece, first_index)
-    end
+    piece_to_class(piece, first_index)
   end
 
   def promotion_choice_to_piece(pawn, choice_int)
@@ -52,9 +46,7 @@ module Converter
 
   def moves_to_index(original_pos, all_moves)
     indexed_arr = []
-    all_moves.each do |x, y|
-      indexed_arr << [(original_pos[0] + x), (original_pos[1] + y)]
-    end
+    all_moves.flatten(1).each { |x, y| indexed_arr << [(original_pos[0] + x), (original_pos[1] + y)] }
     indexed_arr
   end
 end
