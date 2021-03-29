@@ -10,6 +10,7 @@ class Chess
   include Converter
   include InputValidator
   include InCheck
+  include Checkmate
 
   def initialize
     @chessboard = Chessboard.new
@@ -22,7 +23,7 @@ class Chess
 
   def start_round
     @chessboard.current_board
-    check?
+    pre_move_checks
     first_input = first_choice_input
     second_input = second_choice_input(first_input)
     move_piece(first_input, second_input)
@@ -74,7 +75,16 @@ class Chess
 
   def post_move_checks(second_input)
     pawn_promotion(second_input)
-    # checkmate? TODO
+  end
+
+  def pre_move_checks
+    if @turn_counter.odd? && @turn_counter > 1
+      in_check?('black')
+      winner('white') if checkmate?('black')
+    elsif @turn_counter.even? && @turn_counter > 1
+      in_check?('white')
+      winner('black') if checkmate?('white')
+    end
   end
 
   def pawn_promotion(second_input)
@@ -84,5 +94,25 @@ class Chess
 
     new_piece = @pawn.promote_choice(piece)
     @board[index[0]][index[1]] = new_piece
+  end
+
+  def winner(colour)
+    puts 'CHECKMATE!'
+    puts "Congratulations #{colour.capitalize}, you win!"
+    puts 'Do you want to play again? (y/n)'
+    play_again?
+  end
+
+  def play_again?
+    decision = gets.downcase.chomp
+    case decision
+    when 'y'
+      Chess.new.start_round
+    when 'n'
+      puts ':('
+      exit
+    else
+      puts "I don't understand, please enter either y or n"
+    end
   end
 end
