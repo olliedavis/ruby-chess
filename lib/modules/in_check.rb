@@ -27,17 +27,14 @@ module InCheck
     available_moves = []
     pos_array.each do |position|
       piece = index_to_piece(position)
-      if @pawns.any?(piece)
-        available_moves.push(@pawn.moves)
-      else
-        piece_class = piece_to_class(piece, position)
-        piece_moves = piece_class.moves
-        available_moves.push(piece_moves)
-      end
+      piece_class = piece_to_class(piece, position)
+      piece_moves = piece_class.moves
+      available_moves.push(piece_moves)
     end
     available_moves
   end
 
+  # finds all the pieces on the board and returns their positions.
   def all_pieces_on_board(colour)
     pos_array = []
     @board.each_with_index do |row, row_idx|
