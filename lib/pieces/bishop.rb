@@ -6,8 +6,8 @@ class Bishop
   include PathCreator
 
   def initialize(current_position, board)
-    @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
-    @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
+    @black_pieces = %w[♔ ♕ ♗ ♖ ♘ ♙]
+    @white_pieces = %w[♚ ♛ ♝ ♜ ♞ ♟]
     all_paths = path_creator(current_position, all_moves)
     colour = colour(current_position, board)
     @moves = path_checker(all_paths, board, colour)

@@ -6,8 +6,8 @@ class King
   include PathCreator
 
   def initialize(current_position, board)
-    @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
-    @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
+    @black_pieces = %w[♔ ♕ ♗ ♖ ♘ ♙]
+    @white_pieces = %w[♚ ♛ ♝ ♜ ♞ ♟]
     all_moves = [[[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]]
     all_paths = path_creator(current_position, all_moves).flatten(1)
     colour = colour(current_position, board)

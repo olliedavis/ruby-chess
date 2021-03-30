@@ -18,9 +18,9 @@ class Chess
   def initialize
     @chessboard = Chessboard.new
     @board = @chessboard.board
-    @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
-    @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
-    @pawns = ['♙', '♟']
+    @black_pieces = %w[♔ ♕ ♗ ♖ ♘ ♙]
+    @white_pieces = %w[♚ ♛ ♝ ♜ ♞ ♟]
+    @pawns = %w[♙ ♟]
     @turn_counter = 0
   end
 
@@ -54,7 +54,7 @@ class Chess
     second_input = move_piece_input # returns the user's choice
 
     # checks if the input is valid
-    return second_choice_input(first_input) if second_choice_validator(first_input, second_input) == false
+    return second_choice_input(first_input) unless second_choice_validator(first_input, second_input)
 
     second_input
   end
@@ -95,7 +95,7 @@ class Chess
   def pawn_promotion(second_input)
     index = input_to_index(second_input)
     piece = input_to_piece(second_input)
-    return unless ['♙', '♟'].include?(piece) && @pawn.promotion?(index)
+    return unless %w[♙ ♟].include?(piece) && @pawn.promotion?(index)
 
     new_piece = @pawn.promote_choice(piece)
     @board[index[0]][index[1]] = new_piece

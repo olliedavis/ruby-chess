@@ -6,8 +6,8 @@ class Pawn
   include Converter
 
   def initialize(piece, first_index, board)
-    @black_pieces = ['♔', '♕', '♗', '♖', '♘', '♙']
-    @white_pieces = ['♚', '♛', '♝', '♜', '♞', '♟']
+    @black_pieces = %w[♔ ♕ ♗ ♖ ♘ ♙]
+    @white_pieces = %w[♚ ♛ ♝ ♜ ♞ ♟]
     all_moves = move_checking(piece, first_index, board)
     @moves = moves_to_index(first_index, all_moves)
   end
@@ -62,7 +62,7 @@ class Pawn
   def promotion?(new_position)
     x_axis = new_position[0]
     # returns true if the piece has reached the end of the board
-    # as pawns can only move forward, a colour doesn't need to be specifed
+    # as pawns can only move forward, a colour doesn't need to be specified
     return true if x_axis.zero? || x_axis == 7
 
     false
