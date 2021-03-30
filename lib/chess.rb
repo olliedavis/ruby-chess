@@ -25,12 +25,12 @@ class Chess
   end
 
   def start_round
-    @chessboard.current_board
-    pre_move_checks
-    first_input = first_choice_input
-    second_input = second_choice_input(first_input)
-    move_piece(first_input, second_input)
-    post_move_checks(second_input)
+    @chessboard.current_board # displays current board
+    pre_move_checks # checks for check and checkmate
+    first_input = first_choice_input # takes the first input and validates it
+    second_input = second_choice_input(first_input) # takes the second input and validates it
+    move_piece(first_input, second_input) # moves the piece to the validated position
+    post_move_checks(second_input) # checks if Pawn is at back rank
     @turn_counter += 1
     start_round
   end
@@ -44,6 +44,12 @@ class Chess
     first_input
   end
 
+  def choose_piece_input
+    puts "White's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.even?
+    puts "Black's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.odd?
+    gets.upcase.chomp
+  end
+
   def second_choice_input(first_input)
     second_input = move_piece_input # returns the user's choice
 
@@ -51,12 +57,6 @@ class Chess
     return second_choice_input(first_input) if second_choice_validator(first_input, second_input) == false
 
     second_input
-  end
-
-  def choose_piece_input
-    puts "White's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.even?
-    puts "Black's turn! Please enter the coordinates of the piece you want to move" if @turn_counter.odd?
-    gets.upcase.chomp
   end
 
   def move_piece_input
