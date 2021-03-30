@@ -14,7 +14,7 @@ module Save
     save_name = gets.chomp
     if unique_file_name?(save_name)
       save_game(save_name)
-      puts 'Game saved succesfuly!'
+      puts 'Game saved successfully!'
       start_round
     else
       puts 'Save Failed - Name Already Exists'

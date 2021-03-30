@@ -32,7 +32,7 @@ module PathCreator
     real_path
   end
 
-  # king and knight need seperate section as they don't have paths, rather just individual positions they can move to
+  # king and knight need separate section as they don't have paths, rather just individual positions they can move to
   def king_and_knight_path(all_paths, board, colour)
     real_path = []
     all_paths.each do |position|
