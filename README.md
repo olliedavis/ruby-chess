@@ -1,4 +1,5 @@
 # Ruby Chess
+![image](https://user-images.githubusercontent.com/71295778/112990162-a61f7e80-915d-11eb-9f9e-05fd75633189.png)
 
 This is the Final Project of the The Odin Project's Ruby Programming Branch before moving on to Databases and Ruby On Rails. 
 
