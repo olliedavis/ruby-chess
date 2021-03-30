@@ -39,6 +39,7 @@ module InputValidator
     curr_position = input_to_index(first_input)
     new_position = input_to_index(second_input) # converts the second input to index
     return false if @pawns.any?(piece) && pawn_free_path?(curr_position, new_position) == false
+
     # returns true if new position matches any of the piece's move set
     piece_class.moves.each { |x, y| return true if new_position == [x, y] }
     false
@@ -47,7 +48,7 @@ module InputValidator
   def pawn_free_path?(first_index, second_index)
     y_diff = first_index[1] - second_index[1]
     # if y_diff != 0, then it must be going diagonal
-    # if it's going diagonal, then the new position will be occupied by the position
+    # if it's going diagonal, then the new position must be occupied by the opposition
     return true if @chessboard.board[second_index[0]][second_index[1]] == ' ' || y_diff.zero? == false
 
     puts 'The pawn is blocked'
